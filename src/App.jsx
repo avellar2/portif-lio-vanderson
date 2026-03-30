@@ -525,15 +525,16 @@ function App() {
       <footer className="bg-gradient-to-r from-gray-900 via-indigo-900 to-purple-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+            <h3 className="text-2xl font-bold mb-1 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
               Vanderson
             </h3>
+            <p className="text-white font-semibold mb-3">Avellar Digital</p>
             <p className="text-gray-400 mb-4">
               Desenvolvedor Full Stack • Rio de Janeiro, RJ
             </p>
             <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mb-6"></div>
             <p className="text-gray-500 text-sm">
-              © 2026 Vanderson. Feito com React + Vite + Tailwind CSS
+              © 2026 Avellar Digital. Feito com React + Vite + Tailwind CSS
             </p>
           </div>
         </div>
