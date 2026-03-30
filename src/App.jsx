@@ -138,21 +138,24 @@ function App() {
       description: "Sistema de gerenciamento escolar desenvolvido com Next.js. Inclui funcionalidades para gestão de alunos, escolas e impressoras, com processamento de dados e geração de relatórios.",
       tags: ["Next.js", "TypeScript", "Prisma", "Tailwind"],
       link: "https://github.com/avellar2/CSDT-2",
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-cyan-500",
+      icon: "💻"
     },
     {
-      title: "Projeto 2",
-      description: "Outro projeto legal que você desenvolveu. Aplicação moderna e responsiva.",
-      tags: ["Vue.js", "Firebase", "Tailwind"],
+      title: "LP JL Odontologia",
+      description: "Landing Page completa com simulador de tratamento, agendamento online e painel administrativo para gestão de leads e consultas da semana.",
+      tags: ["React", "Next.js", "Tailwind", "Firebase"],
       link: "#",
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "from-blue-500 to-green-500",
+      icon: "🦷"
     },
     {
-      title: "Projeto 3",
-      description: "Mais um projeto fantástico do seu portfólio. Solução inovadora e eficiente.",
-      tags: ["Next.js", "TypeScript", "PostgreSQL"],
+      title: "Modelo Advocacia (Demo)",
+      description: "Landing Page para escritórios de advocacia com formulário de triagem do caso, agendamento de consulta inicial e painel de gestão de clientes.",
+      tags: ["React", "Next.js", "Tailwind", "PostgreSQL"],
       link: "#",
-      gradient: "from-orange-500 to-red-500"
+      gradient: "from-blue-900 to-yellow-600",
+      icon: "⚖️"
     }
   ]
 
@@ -178,6 +181,7 @@ function App() {
               <a href="#home" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Home</a>
               <a href="#about" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Sobre</a>
               <a href="#skills" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Skills</a>
+              <a href="#services" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Serviços</a>
               <a href="#projects" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Projetos</a>
               <a href="#contact" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Contato</a>
             </div>
@@ -222,7 +226,7 @@ function App() {
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
-                Desenvolvedor Full Stack apaixonado por criar experiências digitais incríveis 💻
+                Crio Landing Pages que geram agendamentos e capturam leads qualificados para clínicas, consultórios e escritórios na Baixada Fluminense e região 🚀
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <a href="#projects" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white rounded-full overflow-hidden shadow-2xl transition-all duration-300 hover:scale-105">
@@ -297,12 +301,9 @@ function App() {
                   <span className="font-bold text-pink-600"> amante de tecnologia</span>.
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  Atualmente trabalho na <span className="font-bold text-indigo-600">Secretaria Municipal de Educação</span> no
-                  <span className="font-bold text-purple-600"> setor de tecnologias</span>, onde contribuo para melhorar a educação através
-                  da tecnologia.
-                </p>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Sou apaixonado por desenvolver soluções criativas e eficientes que fazem a diferença no dia a dia das pessoas. 🚀
+                  Sou <span className="font-bold text-indigo-600">desenvolvedor web freelancer</span> especializado em criar
+                  <span className="font-bold text-purple-600"> Landing Pages de alta conversão</span>. Entrego não só o site, mas um
+                  <span className="font-bold text-pink-600"> sistema completo</span> com agendamento online e painel administrativo para você acompanhar seus leads e consultas em tempo real. 🚀
                 </p>
               </div>
 
@@ -349,8 +350,57 @@ function App() {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-gradient-to-br from-gray-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                O que eu entrego
+              </span>
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full mb-4"></div>
+            <p className="text-gray-600 text-lg">
+              Um sistema completo, do site ao painel de gestão
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="group bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 text-center">
+              <div className="text-6xl mb-6 transform group-hover:scale-125 transition-transform duration-300">🎯</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors">
+                Landing Page de Alta Conversão
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Design profissional, rápido e otimizado para converter visitantes em clientes.
+              </p>
+            </div>
+
+            <div className="group bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 text-center">
+              <div className="text-6xl mb-6 transform group-hover:scale-125 transition-transform duration-300">📅</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors">
+                Agendamento Online
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Sistema integrado para seus clientes agendarem diretamente pelo site, 24h por dia.
+              </p>
+            </div>
+
+            <div className="group bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 text-center">
+              <div className="text-6xl mb-6 transform group-hover:scale-125 transition-transform duration-300">📊</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors">
+                Painel Administrativo
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Visualize seus leads, agendamentos da semana e histórico de contatos em um só lugar.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-indigo-50">
+      <section id="projects" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold mb-4">
@@ -372,7 +422,7 @@ function App() {
               >
                 <div className={`h-56 bg-gradient-to-br ${project.gradient} flex items-center justify-center text-white text-7xl relative overflow-hidden`}>
                   <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                  <span className="relative z-10 transform group-hover:scale-125 transition-transform duration-500">💻</span>
+                  <span className="relative z-10 transform group-hover:scale-125 transition-transform duration-500">{project.icon}</span>
                 </div>
                 <div className="p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">
@@ -447,6 +497,19 @@ function App() {
               <span className="relative">WhatsApp</span>
             </a>
             <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative text-white px-10 py-5 rounded-2xl font-bold hover:scale-110 transition-all duration-300 shadow-xl flex items-center gap-3 overflow-hidden"
+              style={{ background: 'linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)' }}
+            >
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: 'linear-gradient(135deg, #fcb045, #fd1d1d, #833ab4)' }}></span>
+              <svg className="relative w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <span className="relative">Instagram</span>
+            </a>
+            <a
               href="mailto:vandersonavellar1997@gmail.com"
               className="group relative bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white px-10 py-5 rounded-2xl font-bold hover:scale-110 transition-all duration-300 shadow-xl flex items-center gap-3 overflow-hidden"
             >
@@ -470,7 +533,7 @@ function App() {
             </p>
             <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mb-6"></div>
             <p className="text-gray-500 text-sm">
-              © 2025 Vanderson. Feito com React + Vite + Tailwind CSS
+              © 2026 Vanderson. Feito com React + Vite + Tailwind CSS
             </p>
           </div>
         </div>
