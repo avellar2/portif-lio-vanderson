@@ -4,35 +4,35 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('./Sora-300.ttf') format('truetype');
+  src: url('/fonts/Sora-300.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Sora';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('./Sora-400.ttf') format('truetype');
+  src: url('/fonts/Sora-400.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Sora';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('./Sora-500.ttf') format('truetype');
+  src: url('/fonts/Sora-500.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Sora';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('./Sora-600.ttf') format('truetype');
+  src: url('/fonts/Sora-600.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Sora';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('./Sora-700.ttf') format('truetype');
+  src: url('/fonts/Sora-700.ttf') format('truetype');
 }
 
 /* Syne — display / títulos */
@@ -41,33 +41,33 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('./Syne-400.ttf') format('truetype');
+  src: url('/fonts/Syne-400.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Syne';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('./Syne-500.ttf') format('truetype');
+  src: url('/fonts/Syne-500.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Syne';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('./Syne-600.ttf') format('truetype');
+  src: url('/fonts/Syne-600.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Syne';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('./Syne-700.ttf') format('truetype');
+  src: url('/fonts/Syne-700.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Syne';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url('./Syne-800.ttf') format('truetype');
+  src: url('/fonts/Syne-800.ttf') format('truetype');
 }
