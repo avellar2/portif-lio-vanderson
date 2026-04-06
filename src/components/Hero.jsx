@@ -4,15 +4,14 @@ export default function Hero() {
   const { handleCardMove, handleCardLeave } = useCard3D()
 
   return (
-    <section id="home" className="min-h-screen flex items-center relative overflow-hidden pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-        {/* Bento Grid Hero */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 items-stretch">
+    <section id="home" className="min-h-screen flex items-center relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center">
 
-          {/* Texto principal — 8 colunas */}
-          <div className="lg:col-span-8 space-y-6">
+          {/* Texto — 7 colunas */}
+          <div className="lg:col-span-7 flex flex-col gap-4">
             <div className="reveal-item">
-              <span className="inline-flex items-center gap-2.5 glass-strong px-4 py-2 rounded-full text-xs font-semibold tracking-wide uppercase text-indigo-300 border border-indigo-500/10">
+              <span className="inline-flex items-center gap-2.5 glass-strong px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase text-indigo-300 border border-indigo-500/10">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
@@ -22,15 +21,15 @@ export default function Hero() {
             </div>
 
             <h1 className="reveal-item font-display">
-              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[7rem] font-extrabold text-white leading-[0.9] tracking-tight">
-                Ola, eu sou
+              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold text-white/70 tracking-tight leading-none">
+                Olá, eu sou
               </span>
-              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[7rem] font-extrabold gradient-text-animated leading-[0.9] tracking-tight mt-1">
+              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold gradient-text-animated tracking-tighter leading-none mt-1">
                 Vanderson
               </span>
             </h1>
 
-            <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl reveal-item">
+            <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-lg reveal-item">
               Crio <span className="text-white font-semibold">Landing Pages</span> que geram agendamentos e capturam leads qualificados para clinicas, consultorios e escritorios na Baixada Fluminense e regiao.
             </p>
 
@@ -46,36 +45,43 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Foto card — 4 colunas */}
-          <div className="lg:col-span-4 reveal-item">
+          {/* Foto card — 5 colunas */}
+          <div className="lg:col-span-5 reveal-item">
             <div
-              className="glass rounded-3xl p-5 lg:p-6 relative group card-3d bento-glow h-full"
+              className="relative group card-3d"
               onMouseMove={(e) => handleCardMove(e, e.currentTarget)}
               onMouseLeave={(e) => handleCardLeave(e.currentTarget)}
             >
-              <div className="relative">
-                <div className="w-full aspect-square max-w-[280px] mx-auto rounded-2xl overflow-hidden glow-ring">
-                  <img src="/foto.jpg" alt="Vanderson" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                </div>
-                <div className="absolute -bottom-2 -right-2 z-20 bg-gradient-to-r from-indigo-600 to-purple-600 px-3 py-1.5 rounded-full text-xs font-bold text-white shadow-lg shadow-indigo-500/30 border border-white/20">
+              {/* Foto PNG grande — cabeça sai pra fora */}
+              <div className="relative flex justify-center">
+                <img
+                  src="/foto-transparente.png"
+                  alt="Vanderson"
+                  className="w-[380px] sm:w-[440px] lg:w-[500px] xl:w-[560px] h-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.7)] group-hover:scale-[1.03] group-hover:-translate-y-3 transition-all duration-700 ease-out relative z-10"
+                />
+
+                {/* Badge 28 anos */}
+                <div className="absolute top-12 right-0 z-20 bg-gradient-to-r from-indigo-600 to-purple-600 px-3 py-1.5 rounded-full text-xs font-bold text-white shadow-lg shadow-indigo-500/30 border border-white/20">
                   28 anos
                 </div>
-              </div>
 
-              {/* Mini bento stats dentro da foto card */}
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                <div className="glass rounded-xl px-3 py-3 flex items-center gap-2">
-                  <span className="text-base">📍</span>
-                  <div>
-                    <p className="text-white text-xs font-semibold">Rio de Janeiro</p>
-                    <p className="text-gray-500 text-[10px]">Duque de Caxias</p>
-                  </div>
-                </div>
-                <div className="glass rounded-xl px-3 py-3 flex items-center gap-2">
-                  <span className="text-base">🎓</span>
-                  <div>
-                    <p className="text-white text-xs font-semibold">Analise e Dev</p>
-                    <p className="text-gray-500 text-[10px]">de Sistemas</p>
+                {/* Stats flutuando sobre o abdomen */}
+                <div className="absolute bottom-0 left-0 right-0 z-20 bg-[#0c0c1a]/90 backdrop-blur-xl rounded-b-2xl p-4 border border-white/[0.08] border-t-0">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm">📍</span>
+                      <div>
+                        <p className="text-white text-[11px] font-semibold">Rio de Janeiro</p>
+                        <p className="text-gray-500 text-[9px]">Duque de Caxias</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm">🎓</span>
+                      <div>
+                        <p className="text-white text-[11px] font-semibold">Analise e Dev</p>
+                        <p className="text-gray-500 text-[9px]">de Sistemas</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
