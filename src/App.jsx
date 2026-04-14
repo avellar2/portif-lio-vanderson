@@ -21,7 +21,7 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-surface relative">
+    <div className="min-h-screen bg-black relative">
       {/* Aurora background layer */}
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
         <div
