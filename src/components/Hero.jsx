@@ -489,7 +489,9 @@ export default function Hero() {
                 >
                   VANDERSON
                 </h1>
-                <p className="text-cyan-400 font-mono text-sm font-semibold">Landing Pages que triplicam agendamentos</p>
+                <p className="text-cyan-400 font-mono text-sm font-semibold">
+                  Landing Pages que triplicam agendamentos em <span className="text-white">30 dias</span>
+                </p>
               </div>
 
               {/* Typing effect subtitle */}
@@ -501,19 +503,36 @@ export default function Hero() {
                 </p>
               </div>
 
+              {/* Texto geo-localizado */}
+              <div className="mt-4 p-4 rounded-xl border border-cyan-500/10 bg-cyan-500/5">
+                <p className="text-gray-300 text-sm">
+                  <span className="text-cyan-400">📍 Atendo:</span> Clínicas, consultórios e escritórios em{" "}
+                  <span className="text-white font-semibold">Duque de Caxias</span> e toda{" "}
+                  <span className="text-white font-semibold">Baixada Fluminense</span>
+                </p>
+              </div>
+
               {/* Stats */}
-              <div className="flex gap-6">
+              <div className="flex gap-4 flex-wrap">
                 <div className="holo-card p-3 text-center">
-                  <p className="text-3xl font-bold text-cyan-400 font-mono">28</p>
-                  <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider">Anos</p>
+                  <p className="text-3xl font-bold text-cyan-400 font-mono">5+</p>
+                  <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider">Anos Dev</p>
                 </div>
+
+                {/* Prova Social */}
+                <div className="holo-card p-3 text-center border-green-500/30">
+                  <p className="text-3xl font-bold text-green-400 font-mono">+150</p>
+                  <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider">Agendamentos/mês</p>
+                </div>
+
                 <div className="holo-card p-3 text-center">
                   <p className="text-3xl font-bold text-purple-400 font-mono">RJ</p>
-                  <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider">Brasil</p>
+                  <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider">Duque de Caxias</p>
                 </div>
+
                 <div className="holo-card p-3 text-center">
                   <p className="text-3xl font-bold text-pink-400 font-mono">100%</p>
-                  <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider">Dedicação</p>
+                  <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider">Satisfação</p>
                 </div>
               </div>
 

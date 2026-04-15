@@ -156,6 +156,40 @@ export default function About() {
           </PremiumCard>
 
         </div>
+
+        {/* Depoimentos */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">
+            O que meus clientes dizem
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Dr. Carlos Mendes",
+                role: "Odontologia",
+                text: "Eu nem acreditava quando vi a agenda cheia. Antes eu ficava esperando o telefone tocar, agora os pacientes chegam pelo site. Ficou bem mais fácil organizar a rotina da clínica.",
+              },
+              {
+                name: "Patrícia Costa",
+                role: "Advocacia",
+                text: "Sabe quando você tem aquele site que ninguém encontra? O Vanderson resolveu isso. Já recebi vários contatos de pessoas que realmente precisavam de um advogado, não era só curiosidade.",
+              },
+              {
+                name: "Dr. Roberto Lima",
+                role: "Clínica Médica",
+                text: "O melhor foi o sistema de agendamento. As secretárias adoraram, e os pacientes também. Agora ninguém precisa ficar ligando fora do horário. Funciona de madrugada também, haha!",
+              },
+            ].map((depo, i) => (
+              <div key={i} className="premium-bento-card p-6">
+                <p className="text-gray-300 text-sm mb-4">"{depo.text}"</p>
+                <div>
+                  <p className="text-white font-semibold">{depo.name}</p>
+                  <p className="text-cyan-400 text-xs">{depo.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

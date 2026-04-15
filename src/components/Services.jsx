@@ -71,6 +71,14 @@ export default function Services() {
           ))}
         </div>
 
+        {/* Urgência */}
+        <div className="flex items-center justify-center gap-4 mb-8 p-4 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
+          <span className="text-2xl">⚠️</span>
+          <p className="text-yellow-400 text-sm">
+            <span className="font-bold">Vagas limitadas:</span> Aceito apenas 2 projetos novos por mês para garantir qualidade
+          </p>
+        </div>
+
         {/* CTA Section */}
         <div className="glass-strong rounded-3xl p-10 md:p-12 text-center border border-white/[0.04]">
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">

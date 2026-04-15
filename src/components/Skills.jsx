@@ -1,12 +1,14 @@
+import { SiReact, SiNextdotjs, SiTypescript, SiNodedotjs, SiTailwindcss, SiPostgresql, SiPrisma, SiFirebase } from 'react-icons/si'
+
 const skills = [
-  { name: "React", abbr: "⚛️", level: 95, color: "from-cyan-400 to-blue-500" },
-  { name: "Next.js", abbr: "▲", level: 90, color: "from-slate-200 to-slate-400" },
-  { name: "TypeScript", abbr: "TS", level: 88, color: "from-blue-400 to-blue-600" },
-  { name: "Node.js", abbr: "N", level: 85, color: "from-green-400 to-emerald-600" },
-  { name: "Tailwind", abbr: "TW", level: 92, color: "from-teal-400 to-cyan-500" },
-  { name: "PostgreSQL", abbr: "DB", level: 80, color: "from-sky-400 to-blue-600" },
-  { name: "Prisma", abbr: "PR", level: 82, color: "from-indigo-400 to-purple-500" },
-  { name: "Firebase", abbr: "🔥", level: 78, color: "from-amber-400 to-orange-500" },
+  { name: "React", icon: SiReact, level: 95, color: "from-cyan-400 to-blue-500" },
+  { name: "Next.js", icon: SiNextdotjs, level: 90, color: "from-slate-200 to-slate-400" },
+  { name: "TypeScript", icon: SiTypescript, level: 88, color: "from-blue-400 to-blue-600" },
+  { name: "Node.js", icon: SiNodedotjs, level: 85, color: "from-green-400 to-emerald-600" },
+  { name: "Tailwind", icon: SiTailwindcss, level: 92, color: "from-teal-400 to-cyan-500" },
+  { name: "PostgreSQL", icon: SiPostgresql, level: 80, color: "from-sky-400 to-blue-600" },
+  { name: "Prisma", icon: SiPrisma, level: 82, color: "from-indigo-400 to-purple-500" },
+  { name: "Firebase", icon: SiFirebase, level: 78, color: "from-amber-400 to-orange-500" },
 ]
 
 export default function Skills() {
@@ -40,7 +42,9 @@ export default function Skills() {
                 '--skill-to': skill.color.split(' ')[1].replace('to-', ''),
               }}
             >
-              <div className="text-4xl mb-4 skill-icon">{skill.abbr}</div>
+              <div className="w-12 h-12 mb-4 skill-icon flex items-center justify-center text-white">
+                <skill.icon size={32} />
+              </div>
               <h3 className="text-white font-semibold mb-3">{skill.name}</h3>
               <div className="progress-bar">
                 <div className="progress-fill" style={{ width: `${skill.level}%` }} />
@@ -94,9 +98,19 @@ export default function Skills() {
 
         .skill-icon {
           background: linear-gradient(135deg, var(--skill-from, #818cf8), var(--skill-to, #a78bfa));
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
+          border-radius: 12px;
+          color: white;
+          transition: all 0.3s;
+        }
+
+        .skill-icon svg {
+          width: 32px;
+          height: 32px;
+        }
+
+        .skill-card:hover .skill-icon {
+          transform: scale(1.1);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         .progress-bar {
