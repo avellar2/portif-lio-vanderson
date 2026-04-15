@@ -1,0 +1,22 @@
+import Layout from '../../components/Layout.jsx'
+
+export default function LPAdvocacia() {
+  return (
+    <Layout>
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        {/* ========================================
+            COLE SEU CÓDIGO DA LANDING PAGE AQUI
+            ======================================== */}
+
+        <div className="text-center py-32">
+          <h1 className="text-4xl font-bold text-white mb-4">LP Advocacia</h1>
+          <p className="text-gray-400">Cole o código da sua Landing Page aqui</p>
+        </div>
+
+        {/* ========================================
+             FIM DA ÁREA PARA COLAR CÓDIGO
+            ======================================== */}
+      </div>
+    </Layout>
+  )
+}

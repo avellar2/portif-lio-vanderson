@@ -70,8 +70,8 @@ export default function About() {
             </p>
 
             <p className="text-gray-400 leading-relaxed">
-              Especialista em criar <span className="text-white font-medium">Landing Pages de alta conversão</span> para clínicas, consultórios e escritórios.
-              Entrego não só um site, mas um <span className="text-white font-medium">sistema completo</span> com agendamento online e painel administrativo.
+              Especialista em desenvolver <span className="text-white font-medium">sistemas completos</span> para negócios locais.
+              De landing pages a e-commerce, SaaS e apps de delivery — transformo ideias em <span className="text-white font-medium">soluções funcionais</span>.
             </p>
           </PremiumCard>
 
@@ -127,8 +127,8 @@ export default function About() {
                 <span className="text-3xl">🎯</span>
               </div>
               <div className="flex-1">
-                <p className="text-white font-semibold mb-1">Foco Atual</p>
-                <p className="text-gray-400 text-sm">Landing Pages de alta conversão para saúde e direito</p>
+                <p className="text-white font-semibold mb-1">Nichos Atendidos</p>
+                <p className="text-gray-400 text-sm">Restaurantes, clínicas, lojas, escolas, serviços e mais</p>
               </div>
               <div className="text-green-400">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -151,6 +151,19 @@ export default function About() {
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 <span className="text-green-400 text-sm font-medium">Online</span>
+              </div>
+            </div>
+          </PremiumCard>
+
+          {/* Sistemas Card */}
+          <PremiumCard className="col-span-2" delay={700} {...bind()}>
+            <div className="flex items-center gap-5">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-3xl">⚙️</span>
+              </div>
+              <div className="flex-1">
+                <p className="text-white font-semibold mb-1">Sistemas que já desenvolvi</p>
+                <p className="text-gray-400 text-sm">SaaS escolar, e-commerce, delivery, agendamento, cardápio digital</p>
               </div>
             </div>
           </PremiumCard>

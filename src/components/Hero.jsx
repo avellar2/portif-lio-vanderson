@@ -11,7 +11,7 @@ export default function Hero() {
   const canvasRef = useRef(null)
 
   // Palavras que aparecem automaticamente
-  const words = ['CONVERSÕES', 'LEADS', 'RESULTADOS', 'VENDAS', 'AGENDAMENTOS', 'SUCESSO']
+  const words = ['SAAS', 'E-COMMERCE', 'DELIVERY', 'AGENDAMENTO', 'GESTÃO', 'AUTOMAÇÃO']
 
   // Relógio digital
   useEffect(() => {
@@ -490,15 +490,14 @@ export default function Hero() {
                   VANDERSON
                 </h1>
                 <p className="text-cyan-400 font-mono text-sm font-semibold">
-                  Landing Pages que triplicam agendamentos em <span className="text-white">30 dias</span>
+                  Sistemas Digitais que <span className="text-white">transformam negócios locais</span>
                 </p>
               </div>
 
               {/* Typing effect subtitle */}
               <div className="h-16 overflow-hidden">
                 <p className="text-base md:text-lg text-gray-300 font-mono" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                  Crio Landing Pages que geram{' '}
-                  <span className="text-cyan-400 font-bold">{currentWord}</span>
+                  De <span className="text-cyan-400 font-bold">{currentWord}</span> a sistemas completos que impulsionam seu negócio
                   <span className="typing-cursor text-cyan-400">|</span>
                 </p>
               </div>

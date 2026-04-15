@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dra. Sofia Martinez | Odontologia Integrativa</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#FAF8F5;--bg2:#F3EEE8;--card:#FFFFFF;
+--ink:#1B1B1B;--ink2:#4A4A4A;--muted:#8E8E8E;
+--teal:#2A9D8F;--teal-l:#76C7B7;--teal-d:#1A7A6E;
+--sand:#E8DFD3;--warm:#D4C4B0;
+--radius:14px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;overflow-x:hidden}
+::selection{background:var(--teal-l);color:var(--ink)}
+
+/* ── HEADER ── */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:900;padding:1rem 2.5rem;transition:all .35s}
+.hdr.scrolled{background:rgba(250,248,245,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--sand)}
+.hdr-in{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.logo em{color:var(--teal);font-style:italic}
+.nv{display:flex;align-items:center;gap:2rem}
+.nv-links{display:flex;gap:1.75rem;list-style:none}
+.nv-links a{text-decoration:none;color:var(--muted);font-size:.85rem;font-weight:500;transition:color .25s;letter-spacing:.02em}
+.nv-links a:hover{color:var(--teal)}
+.btn-nv{padding:.6rem 1.35rem;background:var(--ink);color:#fff;border:none;border-radius:100px;font:600 .82rem/1 'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:all .3s;letter-spacing:.01em}
+.btn-nv:hover{background:var(--teal);transform:translateY(-1px)}
+.mbtn{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px}
+.mbtn span{width:20px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
+.mbtn.on span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.mbtn.on span:nth-child(2){opacity:0}
+.mbtn.on span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:1}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:brightness(.38) saturate(.8);transform:scale(1.04);animation:hz 22s ease-in-out infinite alternate}
+@keyframes hz{to{transform:scale(1.1)}}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(42,157,143,.85) 0%,rgba(42,157,143,.25) 40%,rgba(27,27,27,.35) 70%)}
+.hero-ct{position:relative;z-index:10;width:100%;max-width:1280px;margin:0 auto;padding:0 2.5rem 4.5rem}
+.hero-ey{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:100px;font-size:.68rem;font-weight:600;color:rgba(255,255,255,.9);letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(8px);margin-bottom:1.75rem;opacity:0;animation:hf .55s ease .15s forwards}
+.hero-ey .d{width:5px;height:5px;background:var(--teal-l);border-radius:50%}
+@keyframes hf{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.8rem,6.5vw,5.2rem);font-weight:500;line-height:1.02;color:#fff;letter-spacing:-.03em;margin-bottom:1.25rem}
+.hero h1 .hl{color:var(--teal-l);font-style:italic}
+.hero h1 .ln{display:block;opacity:0;animation:hf .6s ease forwards}
+.hero h1 .ln:nth-child(1){animation-delay:.3s}
+.hero h1 .ln:nth-child(2){animation-delay:.42s}
+.hero h1 .ln:nth-child(3){animation-delay:.54s}
+.hero-bt{display:grid;grid-template-columns:1fr auto;gap:3.5rem;align-items:end;opacity:0;animation:hf .6s ease .85s forwards}
+.hero-desc{color:rgba(255,255,255,.7);font-size:1rem;line-height:1.75;margin-bottom:1.75rem;max-width:480px}
+.hero-cta{display:flex;gap:.85rem;flex-wrap:wrap}
+.bh{display:inline-flex;align-items:center;gap:.45rem;padding:.9rem 1.75rem;background:#fff;color:var(--ink);border:none;border-radius:100px;font:600 .88rem/1 'Plus Jakarta Sans',sans-serif;cursor:pointer;text-decoration:none;transition:all .3s}
+.bh:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.2)}
+.bh svg{transition:transform .25s}.bh:hover svg{transform:translateX(2px)}
+.bg{display:inline-flex;align-items:center;gap:.45rem;padding:.9rem 1.35rem;background:transparent;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.22);border-radius:100px;font:500 .85rem/1 'Plus Jakarta Sans',sans-serif;text-decoration:none;transition:.25s}
+.bg:hover{border-color:rgba(255,255,255,.45);color:#fff}
+.sp{display:flex;flex-direction:column;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:18px;backdrop-filter:blur(16px);overflow:hidden}
+.sr{padding:1rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.sr:last-child{border-bottom:none}
+.sr-n{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:#fff;line-height:1}
+.sr-l{font-size:.68rem;color:rgba(255,255,255,.45);letter-spacing:.05em;margin-top:.2rem}
+.scr{position:absolute;bottom:0;left:2.5rem;width:1px;height:60px;background:rgba(255,255,255,.1);z-index:10;overflow:hidden}
+.scr::after{content:'';position:absolute;top:-100%;width:100%;height:45%;background:var(--teal-l);animation:sl 2.5s ease-in-out infinite}
+@keyframes sl{0%{top:-45%}100%{top:140%}}
+
+/* ── UTILS ── */
+.pad{padding:6.5rem 2.5rem}
+.inner{max-width:1200px;margin:0 auto}
+.tag{display:inline-block;padding:.35rem .85rem;background:rgba(42,157,143,.08);border:1px solid rgba(42,157,143,.15);border-radius:100px;font-size:.68rem;font-weight:600;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.85rem}
+.stitle{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,2.8rem);font-weight:500;line-height:1.12;letter-spacing:-.02em}
+
+/* ── ABOUT ── */
+.about{background:#fff}
+.about-g{display:grid;grid-template-columns:5fr 7fr;gap:4rem;align-items:center}
+.about-media{position:relative}
+.about-img{border-radius:22px;overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,.08)}
+.about-img img{width:100%;height:500px;object-fit:cover;display:block}
+.about-badge{position:absolute;bottom:-20px;right:-20px;background:var(--ink);padding:1.25rem 1.5rem;border-radius:14px;color:#fff;box-shadow:0 16px 32px rgba(0,0,0,.15)}
+.about-badge .n{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:600;color:var(--teal-l);line-height:1}
+.about-badge .l{font-size:.72rem;color:rgba(255,255,255,.45);letter-spacing:.04em}
+.about-body p{color:var(--ink2);margin-bottom:1.15rem;line-height:1.8}
+.creds{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1.5rem}
+.cred{display:flex;align-items:center;gap:.65rem;padding:.7rem .85rem;background:var(--bg);border-radius:10px;border:1px solid var(--sand)}
+.cred i{width:32px;height:32px;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.cred span{font-size:.82rem;font-weight:600}
+
+/* ── SERVICES ── */
+.services{background:var(--bg)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.15rem;margin-top:2.5rem}
+.svc{background:#fff;border:1px solid var(--sand);border-radius:var(--radius);padding:1.75rem;transition:all .3s;position:relative;overflow:hidden}
+.svc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal-l));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.svc:hover{border-color:var(--teal-l);box-shadow:0 16px 40px rgba(42,157,143,.1);transform:translateY(-3px)}
+.svc:hover::after{transform:scaleX(1)}
+.svc-n{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:600;color:var(--bg2);line-height:1;margin-bottom:.5rem}
+.svc h3{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:.35rem}
+.svc p{color:var(--muted);font-size:.85rem;line-height:1.6;margin-bottom:1rem}
+.svc a{color:var(--teal);font-size:.8rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:gap .25s}
+.svc a:hover{gap:.65rem}
+
+/* ── BEFORE AFTER ── */
+.ba-section{background:#fff}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.ba-card{background:var(--bg);border-radius:18px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.ba-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
+.ba-cmp{position:relative;height:280px;overflow:hidden}
+.ba-i{position:absolute;inset:0;background-size:cover;background-position:center}
+.ba-i.after{clip-path:inset(0 50% 0 0)}
+.ba-sl{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;cursor:ew-resize;z-index:10;transform:translateX(-50%)}
+.ba-sl::before{content:'';position:absolute;top:0;left:-10px;right:-10px;bottom:0}
+.ba-hd{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;background:#fff;border-radius:50%;box-shadow:0 3px 14px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.ba-lbls{position:absolute;top:.65rem;left:0;right:0;display:flex;justify-content:space-between;padding:0 .65rem;pointer-events:none;z-index:5}
+.ba-lb{padding:.25rem .6rem;background:rgba(27,27,27,.7);color:#fff;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-radius:5px;backdrop-filter:blur(4px)}
+.ba-body{padding:1.15rem 1.35rem}
+.ba-tag{display:inline-block;padding:.2rem .55rem;background:rgba(42,157,143,.1);color:var(--teal);font-size:.65rem;font-weight:600;border-radius:100px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.4rem}
+.ba-body h3{font-family:'Fraunces',serif;font-size:1.15rem;margin-bottom:.25rem}
+.ba-body p{font-size:.82rem;color:var(--muted);line-height:1.55}
+
+/* ── TESTIMONIALS ── */
+.tst{background:var(--ink);color:#fff}
+.tst .stitle{color:#fff}
+.tst .sub{color:rgba(255,255,255,.5)}
+.tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.15rem;margin-top:2.5rem}
+.tm{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:1.75rem;position:relative}
+.tm::before{content:'\201C';font-family:'Fraunces',serif;font-size:3.5rem;color:rgba(255,255,255,.05);position:absolute;top:.4rem;left:1.25rem;line-height:1}
+.tm-stars{color:#FBBF24;font-size:.8rem;margin-bottom:.75rem}
+.tm p{color:rgba(255,255,255,.7);font-size:.88rem;line-height:1.65;margin-bottom:1.25rem;position:relative;z-index:1}
+.tm-a{display:flex;align-items:center;gap:.65rem}
+.tm-av{width:38px;height:38px;background:linear-gradient(135deg,var(--teal),var(--teal-d));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.82rem}
+.tm-i h4{font-size:.88rem;font-weight:600}
+.tm-i span{font-size:.75rem;color:rgba(255,255,255,.4)}
+
+/* ── CTA ── */
+.cta{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--teal-d),var(--teal),#3AB795)}
+.cta::before{content:'';position:absolute;top:-50%;right:-15%;width:55%;height:180%;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 60%);filter:blur(60px)}
+.cta-in{position:relative;z-index:1;text-align:center;max-width:600px;margin:0 auto}
+.cta-in h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:500;color:#fff;margin-bottom:.65rem;letter-spacing:-.02em}
+.cta-in p{color:rgba(255,255,255,.8);font-size:1rem;margin-bottom:2rem}
+.cta-in .bh{background:#fff;color:var(--ink)}
+
+/* ── FOOTER ── */
+.ft{background:var(--bg2);border-top:1px solid var(--sand)}
+.ft-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding:3.5rem 2.5rem 1.5rem}
+.ft .logo{margin-bottom:.85rem}
+.ft-brand p{color:var(--muted);font-size:.85rem;line-height:1.7;margin-bottom:1.25rem}
+.ft h4{font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.ft-links{list-style:none}
+.ft-links li{margin-bottom:.5rem}
+.ft-links a{color:var(--ink2);text-decoration:none;font-size:.85rem;transition:color .25s}
+.ft-links a:hover{color:var(--teal)}
+.ft-bt{max-width:1200px;margin:0 auto;padding:1.25rem 2.5rem 0;border-top:1px solid var(--sand);display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted)}
+
+/* ── WA ── */
+.wa{position:fixed;bottom:1.5rem;right:1.5rem;width:52px;height:52px;background:#25D366;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 6px 20px rgba(37,211,102,.3);z-index:900;text-decoration:none;transition:all .25s}
+.wa:hover{transform:translateY(-3px) scale(1.04)}
+
+/* ── QUAL MODAL ── */
+.qm{position:fixed!important;inset:0!important;background:rgba(27,27,27,.55);backdrop-filter:blur(8px);z-index:99999;display:none;align-items:center;justify-content:center;padding:1.5rem}
+.qm.on{display:flex}
+.qm-box{background:#fff;color:var(--ink);border-radius:20px;max-width:660px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 32px 64px rgba(0,0,0,.15)}
+.qm-hd{padding:1.5rem 2rem;border-bottom:1px solid var(--sand);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;border-radius:20px 20px 0 0;z-index:10}
+.qm-pg{display:flex;align-items:center;gap:.85rem}
+.qm-dots{display:flex;gap:.3rem}
+.qm-dot{width:7px;height:7px;border-radius:50%;background:var(--sand);transition:.3s}
+.qm-dot.on{background:var(--teal);width:22px;border-radius:4px}
+.qm-lb{font-size:.75rem;color:var(--muted);font-weight:500}
+.qm-x{width:32px;height:32px;border:none;background:var(--bg);border-radius:50%;cursor:pointer;font-size:1rem;color:var(--muted);transition:.25s}
+.qm-x:hover{background:var(--sand)}
+.qm-bd{padding:2rem}
+.qm-st{display:none}.qm-st.on{display:block;animation:qf .3s ease}
+@keyframes qf{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.st-t{font-family:'Fraunces',serif;font-size:1.55rem;margin-bottom:.35rem}
+.st-s{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem}
+.og{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+.op{padding:1rem;border:1.5px solid var(--sand);border-radius:10px;cursor:pointer;transition:.25s;display:flex;align-items:flex-start;gap:.6rem}
+.op:hover{border-color:var(--teal-l);background:rgba(42,157,143,.03)}
+.op.sl{border-color:var(--teal);background:rgba(42,157,143,.06)}
+.op-ic{width:36px;height:36px;background:var(--bg);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.op.sl .op-ic{background:var(--teal)}
+.op h4{font-weight:600;font-size:.88rem;margin-bottom:.1rem}
+.op p{font-size:.75rem;color:var(--muted)}
+.og1{grid-template-columns:1fr}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.fg{margin-bottom:1rem}
+.fg label{display:block;font-size:.75rem;font-weight:600;margin-bottom:.35rem;letter-spacing:.04em;text-transform:uppercase}
+.fi{width:100%;padding:.75rem .9rem;border:1.5px solid var(--sand);border-radius:8px;font:inherit;font-size:.9rem;transition:.25s;color:var(--ink)}
+.fi:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(42,157,143,.08)}
+.fi::placeholder{color:#bbb}
+.cb{background:var(--bg);border-radius:14px;padding:1.15rem}
+.cb-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.cb-m{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600}
+.cb-nv{display:flex;gap:.35rem}
+.cb-nv button{width:28px;height:28px;border:none;background:#fff;border-radius:5px;cursor:pointer;font-size:.9rem;color:var(--muted);transition:.25s}
+.cb-nv button:hover{background:var(--teal);color:#fff}
+.cb-wd{display:grid;grid-template-columns:repeat(7,1fr);gap:.15rem;margin-bottom:.35rem}
+.cb-wd span{text-align:center;font-size:.65rem;font-weight:600;color:var(--muted);padding:.35rem;letter-spacing:.08em}
+.cb-ds{display:grid;grid-template-columns:repeat(7,1fr);gap:.15rem}
+.cb-d{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.82rem;border-radius:7px;cursor:pointer;transition:.25s}
+.cb-d:not(.dis):hover{background:var(--teal-l)}
+.cb-d.sel{background:var(--teal);color:#fff;font-weight:600}
+.cb-d.dis{color:#ddd;cursor:not-allowed}
+.cb-d.tod{border:1px solid var(--teal)}
+.ts-t{font-size:.75rem;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin:1rem 0 .5rem}
+.ts-g{display:grid;grid-template-columns:repeat(4,1fr);gap:.35rem}
+.ts{padding:.5rem;text-align:center;background:#fff;border:1px solid var(--sand);border-radius:5px;font-size:.8rem;cursor:pointer;transition:.25s}
+.ts:hover:not(.dis){border-color:var(--teal);color:var(--teal)}
+.ts.sel{background:var(--teal);border-color:var(--teal);color:#fff}
+.ts.dis{opacity:.3;cursor:not-allowed;background:var(--bg)}
+.qm-ft{display:flex;justify-content:space-between;padding-top:1.5rem;border-top:1px solid var(--sand);margin-top:1.5rem}
+.bb{padding:.7rem 1.1rem;background:transparent;border:none;color:var(--muted);font:500 .85rem/1 inherit;cursor:pointer;transition:.25s}
+.bb:hover{color:var(--ink)}
+.bn{padding:.7rem 1.5rem;background:var(--ink);border:none;border-radius:8px;color:#fff;font:600 .85rem/1 inherit;cursor:pointer;transition:.3s}
+.bn:hover:not(:disabled){background:var(--teal)}
+.bn:disabled{opacity:.4;cursor:not-allowed}
+.sc-card{background:var(--bg);border-radius:12px;padding:1.1rem;margin-bottom:1.1rem}
+.sc-t{font-size:.75rem;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.65rem}
+.sc-r{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(0,0,0,.04)}
+.sc-r:last-child{border:none}
+.sc-l{color:var(--muted);font-size:.85rem}
+.sc-v{font-weight:600;font-size:.85rem}
+.suc{text-align:center;padding:1.5rem}
+.suc-ic{width:64px;height:64px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:2rem;color:#fff}
+.suc h2{font-family:'Fraunces',serif;font-size:1.6rem;margin-bottom:.65rem}
+.suc p{color:var(--muted);max-width:320px;margin:0 auto 1.5rem;font-size:.88rem}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+.about-g{grid-template-columns:1fr;gap:2.5rem}
+.hero-bt{grid-template-columns:1fr;gap:2rem}
+.sp{flex-direction:row}
+.sr{border-bottom:none;border-right:1px solid rgba(255,255,255,.08);flex:1;text-align:center}
+.sr:last-child{border-right:none}
+.svc-grid,.tm-grid,.ba-grid{grid-template-columns:repeat(2,1fr)}
+.ft-in{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+.hdr{padding:.85rem 1.15rem}
+.nv-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(250,248,245,.97);backdrop-filter:blur(14px);flex-direction:column;padding:1rem;gap:0;border-bottom:1px solid var(--sand)}
+.nv-links.open{display:flex}
+.nv-links a{padding:.75rem 0;border-bottom:1px solid var(--sand);color:var(--ink2)}
+.mbtn{display:flex}
+.hero-ct{padding:0 1.15rem 2.5rem}
+.hero h1{font-size:2.1rem}
+.hero-bt{grid-template-columns:1fr;gap:1.5rem}
+.hero-cta{flex-direction:column}
+.bh,.bg{justify-content:center;width:100%}
+.sp{flex-direction:row}.sr{padding:.75rem;text-align:center}
+.sr-n{font-size:1.35rem}
+.scr{left:1.15rem}
+.pad{padding:3.5rem 1.15rem}
+.about-img img{height:320px}
+.about-badge{bottom:-14px;right:-6px;padding:.85rem 1rem}
+.about-badge .n{font-size:1.8rem}
+.stitle{font-size:1.75rem!important}
+.creds{grid-template-columns:1fr 1fr}
+.svc-grid,.tm-grid,.ba-grid{grid-template-columns:1fr;gap:.85rem}
+.svc{padding:1.25rem}
+.ba-cmp{height:230px}
+.tm{padding:1.25rem}
+.cta-in h2{font-size:1.65rem}
+.ft-in{grid-template-columns:1fr;text-align:center;gap:1.5rem;padding:2.5rem 1.15rem 1rem}
+.ft .logo{justify-content:center}
+.ft-bt{flex-direction:column;gap:.35rem;padding:1rem 1.15rem 0;text-align:center}
+.qm-box{border-radius:14px;max-height:95vh}
+.qm-hd{padding:1rem 1.25rem}
+.qm-bd{padding:1.25rem}
+.st-t{font-size:1.25rem}
+.og,.fg2{grid-template-columns:1fr}
+.ts-g{grid-template-columns:repeat(3,1fr)}
+.wa{width:46px;height:46px;font-size:1.25rem;border-radius:12px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr" id="hdr"><div class="hdr-in">
+<a href="#" class="logo">Sofia <em>Martinez</em></a>
+<nav class="nv">
+<ul class="nv-links" id="nvl">
+<li><a href="#sobre" onclick="cm()">Sobre</a></li>
+<li><a href="#servicos" onclick="cm()">Tratamentos</a></li>
+<li><a href="#resultados" onclick="cm()">Resultados</a></li>
+<li><a href="#depoimentos" onclick="cm()">Depoimentos</a></li>
+</ul>
+<button class="btn-nv" onclick="oq()">Agendar</button>
+<button class="mbtn" id="mb" onclick="tm()"><span></span><span></span><span></span></button>
+</nav>
+</div></header>
+
+<section class="hero">
+<div class="hero-bg"><img src="https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?w=1600&h=1000&fit=crop" alt="Clínica odontológica"></div>
+<div class="hero-ct">
+<div class="hero-ey"><span class="d"></span>CRO-SP 12345 · Jardins, São Paulo</div>
+<h1><span class="ln">Seu sorriso</span><span class="ln">merece</span><span class="ln"><span class="hl">excelência.</span></span></h1>
+<div class="hero-bt">
+<div>
+<p class="hero-desc">Cada tratamento é desenhado sob medida. Tecnologia digital, estética avançada e o cuidado que você merece — tudo em um só lugar.</p>
+<div class="hero-cta">
+<a href="#" class="bh" onclick="oq()">Agendar avaliação <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+<a href="#servicos" class="bg">Ver tratamentos</a>
+</div>
+</div>
+<div class="sp">
+<div class="sr"><div class="sr-n">17+</div><div class="sr-l">Anos de experiência</div></div>
+<div class="sr"><div class="sr-n">12k</div><div class="sr-l">Sorrisos transformados</div></div>
+<div class="sr"><div class="sr-n">4.9</div><div class="sr-l">Avaliação Google</div></div>
+</div>
+</div>
+</div>
+<div class="scr"></div>
+</section>
+
+<section class="about pad" id="sobre"><div class="inner"><div class="about-g">
+<div class="about-media">
+<div class="about-img"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=600&h=700&fit=crop&crop=face" alt="Dra. Sofia Martinez"></div>
+<div class="about-badge"><div class="n">17+</div><div class="l">Anos ao sorriso</div></div>
+</div>
+<div class="about-body">
+<span class="tag">Sobre a Dentista</span>
+<h2 class="stitle">Dra. Sofia Martinez</h2>
+<p>Graduada pela USP com especialização em Estética Dental pela Harvard School of Dental Medicine. Odontologia vai além de dentes — é sobre pessoas, confiança e autoestima.</p>
+<p>Cada paciente passa por uma avaliação completa. Entendemos suas necessidades e objetivos para desenhar um plano verdadeiramente personalizado.</p>
+<div class="creds">
+<div class="cred"><i>🎓</i><span>USP & Harvard</span></div>
+<div class="cred"><i>🏆</i><span>Dentista SP 2024</span></div>
+<div class="cred"><i>🔬</i><span>Tecnologia 3D</span></div>
+<div class="cred"><i>💚</i><span>Humanizado</span></div>
+</div>
+</div>
+</div></div></section>
+
+<section class="services pad" id="servicos"><div class="inner">
+<span class="tag">Tratamentos</span>
+<h2 class="stitle">Cuidados especializados</h2>
+<p class="sub" style="color:var(--muted);max-width:480px">Da estética à funcionalidade, cobrimos todas as áreas da odontologia moderna</p>
+<div class="svc-grid">
+<div class="svc"><div class="svc-n">01</div><h3>Implantes</h3><p>Reposição dentária com materiais biocompatíveis e técnica minimamente invasiva.</p><a href="#" onclick="oq()">Saiba mais →</a></div>
+<div class="svc"><div class="svc-n">02</div><h3>Clareamento</h3><p>Tecnologia a laser para resultados visíveis em uma única sessão.</p><a href="#" onclick="oq()">Saiba mais →</a></div>
+<div class="svc"><div class="svc-n">03</div><h3>Ortodontia</h3><p>Alinhadores transparentes Invisalign e aparelhos estéticos.</p><a href="#" onclick="oq()">Saiba mais →</a></div>
+<div class="svc"><div class="svc-n">04</div><h3>Facetas</h3><p>Laminados de cerâmica que transformam formato e cor.</p><a href="#" onclick="oq()">Saiba mais →</a></div>
+<div class="svc"><div class="svc-n">05</div><h3>Periodontia</h3><p>Tratamento de gengivas com laserterapia avançada.</p><a href="#" onclick="oq()">Saiba mais →</a></div>
+<div class="svc"><div class="svc-n">06</div><h3>Restaurações</h3><p>Resinas de alta estética que imitam o dente natural.</p><a href="#" onclick="oq()">Saiba mais →</a></div>
+</div>
+</div></section>
+
+<section class="ba-section pad" id="resultados"><div class="inner">
+<span class="tag">Resultados Reais</span>
+<h2 class="stitle">Transformações que inspiram</h2>
+<p class="sub" style="color:var(--muted);max-width:480px">Veja alguns dos sorrisos que transformamos</p>
+<div class="ba-grid">
+<div class="ba-card">
+<div class="ba-cmp" data-case="1">
+<div class="ba-i before" style="background-image:url('https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&h=400&fit=crop')"></div>
+<div class="ba-i after" style="background-image:url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&h=400&fit=crop')"></div>
+<div class="ba-sl"><div class="ba-hd">↔</div></div>
+<div class="ba-lbls"><span class="ba-lb">Antes</span><span class="ba-lb">Depois</span></div>
+</div>
+<div class="ba-body"><span class="ba-tag">Implantes</span><h3>Reabilitação Oral</h3><p>Implantes de titânio e prótese fixa em 3 meses.</p></div>
+</div>
+<div class="ba-card">
+<div class="ba-cmp" data-case="2">
+<div class="ba-i before" style="background-image:url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&crop=face')"></div>
+<div class="ba-i after" style="background-image:url('https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=400&h=400&fit=crop&crop=face')"></div>
+<div class="ba-sl"><div class="ba-hd">↔</div></div>
+<div class="ba-lbls"><span class="ba-lb">Antes</span><span class="ba-lb">Depois</span></div>
+</div>
+<div class="ba-body"><span class="ba-tag">Clareamento</span><h3>8 Tons Mais Branco</h3><p>Resultado imediato em sessão de 90 minutos.</p></div>
+</div>
+<div class="ba-card">
+<div class="ba-cmp" data-case="3">
+<div class="ba-i before" style="background-image:url('https://images.unsplash.com/photo-1588776814546-1b5c4e90c9d6?w=400&h=400&fit=crop&crop=face')"></div>
+<div class="ba-i after" style="background-image:url('https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=400&h=400&fit=crop&crop=face')"></div>
+<div class="ba-sl"><div class="ba-hd">↔</div></div>
+<div class="ba-lbls"><span class="ba-lb">Antes</span><span class="ba-lb">Depois</span></div>
+</div>
+<div class="ba-body"><span class="ba-tag">Ortodontia</span><h3>Alinhamento em 6 Meses</h3><p>Alinhadores transparentes, resultado natural.</p></div>
+</div>
+</div>
+</div></section>
+
+<section class="tst pad" id="depoimentos"><div class="inner">
+<span class="tag">Depoimentos</span>
+<h2 class="stitle">Histórias reais</h2>
+<p class="sub">O que nossos pacientes dizem</p>
+<div class="tm-grid">
+<div class="tm"><div class="tm-stars">★★★★★</div><p>"A Dra. Sofia mudou minha vida. Depois das facetas, não consigo parar de sorrir."</p><div class="tm-a"><div class="tm-av">MC</div><div class="tm-i"><h4>Marina Costa</h4><span>Facetas de Porcelana</span></div></div></div>
+<div class="tm"><div class="tm-stars">★★★★★</div><p>"Fiz 3 implantes e foi muito mais tranquilo do que imaginei. Equipe impecável."</p><div class="tm-a"><div class="tm-av">RS</div><div class="tm-i"><h4>Ricardo Santos</h4><span>Implantes Dentários</span></div></div></div>
+<div class="tm"><div class="tm-stars">★★★★★</div><p>"Alinhador por 8 meses e ninguém notou. Resultado perfeito, vale cada centavo!"</p><div class="tm-a"><div class="tm-av">AL</div><div class="tm-i"><h4>Ana Luísa</h4><span>Ortodontia Invisalign</span></div></div></div>
+</div>
+</div></section>
+
+<section class="cta pad"><div class="inner"><div class="cta-in">
+<h2>Pronto para transformar seu sorriso?</h2>
+<p>Responda algumas perguntas e encontre o tratamento ideal. Sem compromisso.</p>
+<a href="#" class="bh" onclick="oq()">Começar avaliação gratuita <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</div></div></section>
+
+<footer class="ft">
+<div class="ft-in">
+<div class="ft-brand"><a href="#" class="logo">Sofia <em>Martinez</em></a><p>Odontologia integrativa com foco em estética e funcionalidade.</p></div>
+<div><h4>Navegação</h4><ul class="ft-links"><li><a href="#sobre">Sobre</a></li><li><a href="#servicos">Tratamentos</a></li><li><a href="#resultados">Resultados</a></li><li><a href="#depoimentos">Depoimentos</a></li></ul></div>
+<div><h4>Tratamentos</h4><ul class="ft-links"><li><a href="#" onclick="oq()">Implantes</a></li><li><a href="#" onclick="oq()">Clareamento</a></li><li><a href="#" onclick="oq()">Ortodontia</a></li><li><a href="#" onclick="oq()">Facetas</a></li></ul></div>
+<div><h4>Contato</h4><ul class="ft-links"><li><a href="tel:+551131234567">(11) 3123-4567</a></li><li><a href="https://wa.me/5511999999999" target="_blank">(11) 99999-9999</a></li><li><a href="mailto:contato@drasofiamartinez.com.br">contato@drasofia...</a></li><li>Rua Oscar Freire, 1200 — SP</li></ul></div>
+</div>
+<div class="ft-bt"><span>© 2026 Dra. Sofia Martinez — CRO-SP 12345</span><span>Todos os direitos reservados</span></div>
+</footer>
+
+<a href="https://wa.me/5511999999999" class="wa" target="_blank">💬</a>
+
+<!-- Botão Painel Admin Chamativo -->
+<div class="admin-banner-container">
+  <a href="/painel/lp-dentista" class="admin-banner-btn" target="_blank">
+    <div class="admin-banner-content">
+      <span class="admin-banner-icon">📊</span>
+      <div class="admin-banner-text">
+        <span class="admin-banner-title">Painel Administrativo</span>
+        <span class="admin-banner-subtitle">Clique para ver agendamentos e leads</span>
+      </div>
+      <div class="admin-banner-arrow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+    <div class="admin-banner-pulse"></div>
+    <div class="admin-banner-glow"></div>
+  </a>
+</div>
+
+<style>
+.admin-banner-container {
+  position: fixed;
+  bottom: 6.5rem;
+  right: 1.5rem;
+  z-index: 1001;
+}
+
+.admin-banner-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background: linear-gradient(135deg, #2A9D8F 0%, #1A7A6E 50%, #2A9D8F 100%);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(42, 157, 143, 0.5);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: visible;
+}
+
+.admin-banner-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 48px rgba(42, 157, 143, 0.7);
+  padding: 1rem 2rem;
+}
+
+.admin-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.admin-banner-icon {
+  font-size: 2rem;
+  line-height: 1;
+  animation: bounce-icon 1s ease-in-out infinite;
+}
+
+@keyframes bounce-icon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.admin-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.admin-banner-title {
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.admin-banner-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.admin-banner-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: white;
+  animation: arrow-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+.admin-banner-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: inherit;
+  opacity: 0.5;
+  animation: pulse-border 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes pulse-border {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.08); opacity: 0; }
+}
+
+.admin-banner-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #2A9D8F, #1A7A6E, #2A9D8F);
+  filter: blur(16px);
+  opacity: 0.6;
+  z-index: 0;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .admin-banner-container {
+    bottom: 5rem;
+    right: 1rem;
+  }
+  .admin-banner-btn {
+    padding: 0.85rem 1.25rem;
+  }
+  .admin-banner-subtitle {
+    display: none;
+  }
+  .admin-banner-arrow {
+    width: 32px;
+    height: 32px;
+  }
+}
+</style>
+
+<!-- QUAL MODAL -->
+  .admin-text {
+    display: none;
+  }
+  .admin-panel-btn:hover {
+    padding-left: 1rem;
+  }
+}
+</style>
+
+<!-- QUAL MODAL -->
+<div class="qm" id="qm"><div class="qm-box">
+<div class="qm-hd"><div class="qm-pg"><div class="qm-dots" id="dots"><div class="qm-dot on"></div><div class="qm-dot"></div><div class="qm-dot"></div><div class="qm-dot"></div><div class="qm-dot"></div></div><span class="qm-lb" id="sl">Passo 1 de 5</span></div><button class="qm-x" onclick="cq()">×</button></div>
+<div class="qm-bd"><form id="qf">
+<div class="qm-st on" data-step="1"><h2 class="st-t">Qual sua principal necessidade?</h2><p class="st-s">Selecione para personalizarmos seu atendimento</p>
+<div class="og">
+<div class="op" data-value="dor" onclick="so(this,'concern')"><div class="op-ic">😣</div><div><h4>Dor ou desconforto</h4><p>Dor de dente ou sensibilidade</p></div></div>
+<div class="op" data-value="estetica" onclick="so(this,'concern')"><div class="op-ic">✨</div><div><h4>Melhorar estética</h4><p>Sorriso mais bonito e alinhado</p></div></div>
+<div class="op" data-value="reposicao" onclick="so(this,'concern')"><div class="op-ic">🦷</div><div><h4>Repor dente</h4><p>Preciso de implante</p></div></div>
+<div class="op" data-value="checkup" onclick="so(this,'concern')"><div class="op-ic">🔍</div><div><h4>Check-up preventivo</h4><p>Avaliação de rotina</p></div></div>
+</div></div>
+<div class="qm-st" data-step="2"><h2 class="st-t">Onde está o problema?</h2><p class="st-s">Identifique a região afetada</p>
+<div class="og">
+<div class="op" data-value="frontal" onclick="so(this,'area')"><div class="op-ic">😁</div><div><h4>Dentes da frente</h4><p>Região visível ao sorrir</p></div></div>
+<div class="op" data-value="lados" onclick="so(this,'area')"><div class="op-ic">🦷</div><div><h4>Dentes dos lados</h4><p>Pré-molares e molares</p></div></div>
+<div class="op" data-value="gengiva" onclick="so(this,'area')"><div class="op-ic">👄</div><div><h4>Gengivas</h4><p>Sangramento ou inflamação</p></div></div>
+<div class="op" data-value="todos" onclick="so(this,'area')"><div class="op-ic">😬</div><div><h4>Toda a boca</h4><p>Problemas generalizados</p></div></div>
+</div></div>
+<div class="qm-st" data-step="3"><h2 class="st-t">Há quanto tempo?</h2><p class="st-s">Ajuda a entender a urgência</p>
+<div class="og og1">
+<div class="op" data-value="agora" onclick="so(this,'duration')"><div class="op-ic">🚨</div><div><h4>Começou agora</h4><p>Pode precisar de atenção imediata</p></div></div>
+<div class="op" data-value="semanas" onclick="so(this,'duration')"><div class="op-ic">📅</div><div><h4>Algumas semanas</h4><p>Convivo com isso há um tempo</p></div></div>
+<div class="op" data-value="meses" onclick="so(this,'duration')"><div class="op-ic">📆</div><div><h4>Meses ou anos</h4><p>Algo crônico ou adiando</p></div></div>
+</div></div>
+<div class="qm-st" data-step="4"><h2 class="st-t">Seus dados de contato</h2><p class="st-s">Para confirmar o agendamento</p>
+<div class="fg2"><div class="fg"><label>Nome completo</label><input class="fi" id="nome" placeholder="Seu nome"></div><div class="fg"><label>WhatsApp</label><input type="tel" class="fi" id="whatsapp" placeholder="(11) 99999-9999"></div></div>
+<div class="fg"><label>E-mail</label><input type="email" class="fi" id="email" placeholder="seu@email.com"></div>
+<div class="fg"><label>Detalhe importante? (opcional)</label><input class="fi" id="detalhes" placeholder="Medicações, alergias..."></div>
+</div>
+<div class="qm-st" data-step="5"><h2 class="st-t">Escolha o melhor horário</h2><p class="st-s">Selecione dia e horário</p>
+<div class="sc-card"><div class="sc-t">Resumo</div>
+<div class="sc-r"><span class="sc-l">Problema:</span><span class="sc-v" id="sC">-</span></div>
+<div class="sc-r"><span class="sc-l">Região:</span><span class="sc-v" id="sA">-</span></div>
+<div class="sc-r"><span class="sc-l">Tempo:</span><span class="sc-v" id="sD">-</span></div>
+<div class="sc-r"><span class="sc-l">Nome:</span><span class="sc-v" id="sN">-</span></div></div>
+<div class="cb"><div class="cb-hd"><button class="cb-nv" onclick="chM(-1)">‹</button><span class="cb-m" id="cM">Abril 2026</span><button class="cb-nv" onclick="chM(1)">›</button></div>
+<div class="cb-wd"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+<div class="cb-ds" id="cDs"></div>
+<div class="ts-t">Horários disponíveis</div>
+<div class="ts-g"><div class="ts" onclick="st(this)">08:00</div><div class="ts" onclick="st(this)">09:00</div><div class="ts" onclick="st(this)">10:00</div><div class="ts" onclick="st(this)">11:00</div><div class="ts" onclick="st(this)">14:00</div><div class="ts" onclick="st(this)">15:00</div><div class="ts" onclick="st(this)">16:00</div><div class="ts" onclick="st(this)">17:00</div><div class="ts dis">18:00</div><div class="ts dis">19:00</div></div>
+</div></div>
+<div class="qm-st" data-step="success"><div class="suc"><div class="suc-ic">✓</div><h2>Agendamento confirmado!</h2><p id="sMsg">Entraremos em contato pelo WhatsApp.</p><button class="bh" onclick="cq()">Fechar</button></div></div>
+</form>
+<div class="qm-ft" id="qf2"><button class="bb" id="bB" onclick="pv()" style="visibility:hidden">Voltar</button><button class="bn" id="bN" onclick="nx()" disabled>Continuar</button></div>
+</div>
+</div></div>
+
+<script>
+const F={concern:null,area:null,duration:null,nome:'',whatsapp:'',email:'',detalhes:'',sd:null,st:null};
+let S=1,CD=new Date(),sD=null,sT=null;
+const cM={'dor':'Dor ou desconforto','estetica':'Melhorar estética','reposicao':'Repor dente','checkup':'Check-up preventivo'};
+const aM={'frontal':'Dentes da frente','lados':'Dentes dos lados','gengiva':'Gengivas','todos':'Toda a boca'};
+const dM={'agora':'Começou agora','semanas':'Algumas semanas','meses':'Meses ou anos'};
+
+function oq(){document.getElementById('qm').classList.add('on');document.body.style.overflow='hidden';gC()}
+function cq(){document.getElementById('qm').classList.remove('on');document.body.style.overflow='';rF()}
+function rF(){S=1;for(let k in F)F[k]=null;document.querySelectorAll('.op').forEach(e=>e.classList.remove('sl'));document.querySelectorAll('.fi').forEach(e=>e.value='');if(sD)sD.classList.remove('sel');if(sT)sT.classList.remove('sel');sD=sT=null;uU()}
+function so(el,t){el.parentElement.querySelectorAll('.op').forEach(c=>c.classList.remove('sl'));el.classList.add('sl');F[t]=el.dataset.value;document.getElementById('bN').disabled=false}
+function nx(){
+if(S===4){const n=document.getElementById('nome').value,w=document.getElementById('whatsapp').value,e=document.getElementById('email').value;
+if(!n||!w||!e){alert('Preencha todos os campos');return}
+F.nome=n;F.whatsapp=w;F.email=e;F.detalhes=document.getElementById('detalhes').value;
+document.getElementById('sC').textContent=cM[F.concern]||'-';document.getElementById('sA').textContent=aM[F.area]||'-';
+document.getElementById('sD').textContent=dM[F.duration]||'-';document.getElementById('sN').textContent=F.nome}
+if(S===5){if(!F.sd||!F.st){alert('Selecione data e horário');return}shSuc();return}S++;uU()}
+function pv(){if(S>1){S--;uU()}}
+function uU(){
+document.querySelectorAll('.qm-st').forEach(s=>{s.classList.remove('on');if(s.dataset.step==S||(s.dataset.step==='success'&&S==='success'))s.classList.add('on')});
+document.querySelectorAll('.qm-dot').forEach((d,i)=>{d.classList.remove('on');if(i<S||S==='success')d.classList.add('on')});
+document.getElementById('sl').textContent=S==='success'?'':`Passo ${S} de 5`;
+document.getElementById('bB').style.visibility=S>1?'visible':'hidden';
+const nb=document.getElementById('bN');
+if(S===5){nb.textContent='Confirmar';nb.disabled=!F.sd||!F.st}else if(S===4){nb.textContent='Continuar';nb.disabled=false}
+else{nb.textContent='Continuar';nb.disabled=!F[{1:'concern',2:'area',3:'duration'}[S]]}
+document.getElementById('qf2').style.display=S==='success'?'none':'flex'}
+function gC(){const y=CD.getFullYear(),m=CD.getMonth();
+const ms=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+document.getElementById('cM').textContent=`${ms[m]} ${y}`;
+const f=new Date(y,m,1).getDay(),dm=new Date(y,m+1,0).getDate(),td=new Date();td.setHours(0,0,0,0);
+let h='';for(let i=0;i<f;i++)h+='<div class="cb-d dis"></div>';
+for(let d=1;d<=dm;d++){const dt=new Date(y,m,d),p=dt<td,wk=dt.getDay()===0||dt.getDay()===6,far=dt>new Date(td.getTime()+60*864e5);
+let c='cb-d';if(p||wk||far)c+=' dis';if(dt.getTime()===td.getTime())c+=' tod';if(sD&&sD.dataset.day==d)c+=' sel';
+h+=!p&&!wk&&!far?`<div class="${c}" onclick="sd(this,${y},${m},${d})" data-day="${d}">${d}</div>`:`<div class="${c}">${d}</div>`}
+document.getElementById('cDs').innerHTML=h}
+function chM(d){CD.setMonth(CD.getMonth()+d);gC()}
+function sd(el,y,m,d){if(el.classList.contains('dis'))return;if(sD)sD.classList.remove('sel');el.classList.add('sel');sD=el;F.sd=new Date(y,m,d);uN()}
+function st(el){if(el.classList.contains('dis'))return;if(sT)sT.classList.remove('sel');el.classList.add('sel');sT=el;F.st=el.textContent;uN()}
+function uN(){document.getElementById('bN').disabled=!F.sd||!F.st}
+function shSuc(){const ds=F.sd.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+document.getElementById('sMsg').innerHTML=`<strong>${F.nome}</strong>, sua consulta está agendada!<br><br>📅 ${ds}<br>⏰ ${F.st}<br><br>WhatsApp: <strong>${F.whatsapp}</strong>`;S='success';uU()}
+
+document.getElementById('whatsapp').addEventListener('input',function(e){let v=e.target.value.replace(/\D/g,'');if(v.length>11)v=v.slice(0,11);if(v.length>0){v='('+v;if(v.length>3)v=v.slice(0,3)+') '+v.slice(3);if(v.length>10)v=v.slice(0,10)+'-'+v.slice(10)}e.target.value=v});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoRequest({behavior:'smooth',block:'start'})})});
+window.addEventListener('scroll',()=>document.getElementById('hdr').classList.toggle('scrolled',scrollY>60));
+
+// Before/After
+document.querySelectorAll('.ba-cmp').forEach(c=>{const sl=c.querySelector('.ba-sl'),af=c.querySelector('.ba-i.after');let dn=false;
+const u=x=>{const r=c.getBoundingClientRect();let p=Math.max(0,Math.min(100,(x-r.left)/r.width*100));sl.style.left=p+'%';af.style.clipPath=`inset(0 ${100-p}% 0 0)`};
+sl.addEventListener('mousedown',()=>dn=true);document.addEventListener('mouseup',()=>dn=false);document.addEventListener('mousemove',e=>{if(dn)u(e.clientX)});
+c.addEventListener('touchstart',()=>dn=true);document.addEventListener('touchend',()=>dn=false);document.addEventListener('touchmove',e=>{if(dn)u(e.touches[0].clientX)});
+c.addEventListener('click',e=>u(e.clientX))});
+
+function tm(){document.getElementById('nvl').classList.toggle('open');document.getElementById('mb').classList.toggle('on')}
+function cm(){document.getElementById('nvl').classList.remove('open');document.getElementById('mb').classList.remove('on')}
+uU();
+</script>
+</body>
+</html>

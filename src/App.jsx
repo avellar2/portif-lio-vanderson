@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useScrollReveal } from './hooks/useScrollReveal.js'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
@@ -10,7 +11,17 @@ import Projects from './components/Projects.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 
-function App() {
+// Páginas de projetos
+import LPOdontologia from './pages/lp-odontologia/LPOdontologia.jsx'
+import LPAdvocacia from './pages/lp-advocacia/LPAdvocacia.jsx'
+import SistemaCSDT from './pages/sistema-csdt/SistemaCSDT.jsx'
+import LojaVirtual from './pages/loja-virtual/LojaVirtual.jsx'
+import AppDelivery from './pages/app-delivery/AppDelivery.jsx'
+import SistemaAgendamento from './pages/sistema-agendamento/SistemaAgendamento.jsx'
+import CardapioDigital from './pages/cardapio-digital/CardapioDigital.jsx'
+import PainelLPDentista from './pages/painel-lp-dentista/PainelLPDentista.jsx'
+
+function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false)
   useScrollReveal()
 
@@ -21,33 +32,40 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Aurora background layer */}
-      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-        <div
-          className="absolute -top-[30%] -left-[30%] w-[160%] h-[160%] aurora-gradient animate-aurora"
-        />
-      </div>
+    <>
+      <Navbar isScrolled={isScrolled} />
+      <Hero />
+      <Marquee />
+      <About />
+      <Skills />
+      <Services />
+      <Projects />
+      <Contact />
+      <Footer />
+    </>
+  )
+}
 
-      {/* Grid pattern layer */}
-      <div className="fixed inset-0 pointer-events-none bg-grid-lines" style={{ zIndex: 1 }} />
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Página principal */}
+        <Route path="/" element={<HomePage />} />
 
-      {/* Noise texture layer */}
-      <div className="fixed inset-0 pointer-events-none noise-texture opacity-60" style={{ zIndex: 2 }} />
+        {/* Rotas dos projetos */}
+        <Route path="/projeto/lp-odontologia" element={<LPOdontologia />} />
+        <Route path="/projeto/lp-advocacia" element={<LPAdvocacia />} />
+        <Route path="/projeto/sistema-csdt" element={<SistemaCSDT />} />
+        <Route path="/projeto/loja-virtual" element={<LojaVirtual />} />
+        <Route path="/projeto/app-delivery" element={<AppDelivery />} />
+        <Route path="/projeto/sistema-agendamento" element={<SistemaAgendamento />} />
+        <Route path="/projeto/cardapio-digital" element={<CardapioDigital />} />
 
-      {/* Content */}
-      <div className="relative" style={{ zIndex: 10 }}>
-        <Navbar isScrolled={isScrolled} />
-        <Hero />
-        <Marquee />
-        <About />
-        <Skills />
-        <Services />
-        <Projects />
-        <Contact />
-        <Footer />
-      </div>
-    </div>
+        {/* Paineis Administrativos */}
+        <Route path="/painel/lp-dentista" element={<PainelLPDentista />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

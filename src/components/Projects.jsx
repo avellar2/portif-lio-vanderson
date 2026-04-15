@@ -1,34 +1,66 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
 const projects = [
   {
+    category: "SaaS",
     title: "Sistema CSDT",
-    description: "Sistema de gerenciamento escolar desenvolvido com Next.js. Inclui gestão de alunos, escolas e impressoras, com geração de relatórios completos.",
-    tags: ["Next.js", "TypeScript", "Prisma", "Tailwind"],
-    link: "https://github.com/avellar2/CSDT-2",
+    description: "SaaS completo para gerenciamento escolar com gestão de alunos, escolas, impressoras e relatórios.",
+    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
+    link: "/projeto/sistema-csdt",
     gradient: "from-blue-500 via-cyan-500 to-indigo-500",
-    icon: "💻",
+    icon: "🎓",
     featured: true,
   },
   {
-    title: "LP JL Odontologia",
-    description: "Landing Page completa com simulador de tratamento, agendamento online e painel administrativo para gestão de leads e consultas.",
-    tags: ["React", "Next.js", "Tailwind", "Firebase"],
-    link: "#",
+    category: "E-commerce",
+    title: "Loja Virtual Completa",
+    description: "E-commerce com carrinho, checkout Stripe, gestão de produtos e pedidos em tempo real.",
+    tags: ["Next.js", "Stripe", "Prisma", "Tailwind"],
+    link: "/projeto/loja-virtual",
     gradient: "from-emerald-500 via-green-500 to-teal-500",
-    icon: "🦷",
-    featured: false,
+    icon: "🛒",
   },
   {
-    title: "Modelo Advocacia",
-    description: "Landing Page para escritórios de advocacia com formulário de triagem, agendamento de consulta e painel de gestão de clientes.",
-    tags: ["React", "Next.js", "Tailwind", "PostgreSQL"],
-    link: "#",
-    gradient: "from-amber-500 via-orange-500 to-yellow-500",
-    icon: "⚖️",
-    featured: false,
+    category: "Delivery",
+    title: "App de Delivery",
+    description: "Sistema de pedidos com rastreamento em tempo real, painel administrativo e notificações.",
+    tags: ["React", "Node.js", "Socket.io", "Maps API"],
+    link: "/projeto/app-delivery",
+    gradient: "from-orange-500 via-red-500 to-pink-500",
+    icon: "🍕",
+  },
+  {
+    category: "Agendamento",
+    title: "Sistema Agendamento",
+    description: "Agenda online 24/7 com lembretes WhatsApp automático e painel de gestão.",
+    tags: ["Next.js", "Twilio", "PostgreSQL", "Tailwind"],
+    link: "/projeto/sistema-agendamento",
+    gradient: "from-blue-500 via-indigo-500 to-purple-500",
+    icon: "📅",
+  },
+  {
+    category: "Restaurantes",
+    title: "Cardápio Digital QR",
+    description: "Cardápio interativo com QR Code, pedidos na mesa e conta individual.",
+    tags: ["React", "QR Code", "Tailwind", "Firebase"],
+    link: "/projeto/cardapio-digital",
+    gradient: "from-amber-500 via-yellow-500 to-orange-500",
+    icon: "🎫",
+  },
+  {
+    category: "Landing Page",
+    title: "LP Clínica Odontológica",
+    description: "Landing Page com simulador de tratamento, agendamento online e captura de leads.",
+    tags: ["React", "Next.js", "Tailwind", "Firebase"],
+    link: "/projeto/lp-odontologia",
+    gradient: "from-cyan-500 via-teal-500 to-green-500",
+    icon: "🦷",
   },
 ]
 
 export default function Projects() {
+  const [categoriaAtiva, setCategoriaAtiva] = useState('Todos')
   return (
     <section id="projects" className="py-32 relative overflow-hidden" style={{ background: '#06060e' }}>
       {/* Grid Background */}
@@ -39,22 +71,38 @@ export default function Projects() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="mb-20">
+        <div className="mb-12">
           <p className="section-label mb-4">Portfolio</p>
           <h2 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-            Projetos
+            Cases por
             <span className="block mt-2 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              selecionados
+              categoria
             </span>
           </h2>
-          <p className="text-gray-400 text-lg mt-6 max-w-2xl">
-            Alguns dos trabalhos que desenvolvi com dedicação e paixão.
-          </p>
+        </div>
+
+        {/* Filtros por Categoria */}
+        <div className="flex flex-wrap gap-2 mb-10 justify-center">
+          {['Todos', 'SaaS', 'E-commerce', 'Delivery', 'Agendamento', 'Restaurantes', 'Landing Page'].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setCategoriaAtiva(cat)}
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                categoriaAtiva === cat
+                  ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/30'
+                  : 'bg-white/5 text-gray-400 hover:bg-white/10'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
+          {projects
+            .filter((project) => categoriaAtiva === 'Todos' || project.category === categoriaAtiva)
+            .map((project, index) => (
             <div
               key={project.title}
               className={`project-card ${project.featured ? 'md:col-span-2 lg:col-span-2' : ''}`}
@@ -88,17 +136,15 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <a
-                  href={project.link}
-                  target={project.link.startsWith('http') ? '_blank' : undefined}
-                  rel="noopener noreferrer"
+                <Link
+                  to={project.link}
                   className="project-link"
                 >
                   Ver projeto
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           ))}
@@ -107,7 +153,7 @@ export default function Projects() {
         {/* CTA */}
         <div className="mt-16 text-center">
           <p className="text-gray-400 mb-6">
-            Quer um projeto como este para seu negócio?
+            Quer um sistema como este para seu negócio?
           </p>
           <a
             href="https://wa.me/5521968410983"
