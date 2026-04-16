@@ -1,22 +1,16 @@
-import Layout from '../../components/Layout.jsx'
+import { useEffect } from 'react'
 
 export default function LPAdvocacia() {
+  useEffect(() => {
+    window.location.href = '/lp-advogados/index.html'
+  }, [])
+
   return (
-    <Layout>
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* ========================================
-            COLE SEU CÓDIGO DA LANDING PAGE AQUI
-            ======================================== */}
-
-        <div className="text-center py-32">
-          <h1 className="text-4xl font-bold text-white mb-4">LP Advocacia</h1>
-          <p className="text-gray-400">Cole o código da sua Landing Page aqui</p>
-        </div>
-
-        {/* ========================================
-             FIM DA ÁREA PARA COLAR CÓDIGO
-            ======================================== */}
+    <div className="min-h-screen flex items-center justify-center" style={{ background: '#0d0d12' }}>
+      <div className="text-center">
+        <div className="w-12 h-12 border-2 border-t-transparent rounded-full animate-spin mx-auto mb-4" style={{ borderColor: '#c9a84c', borderTopColor: 'transparent' }} />
+        <p className="text-gray-400 text-sm">Carregando...</p>
       </div>
-    </Layout>
+    </div>
   )
 }

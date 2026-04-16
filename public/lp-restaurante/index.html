@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TERRA | Cozinha Autoral - Alta Gastronomia no Rio de Janeiro</title>
+<meta name="description" content="TERRA - Cozinha autoral com ingredientes locais e técnicas contemporâneas. Reserve sua mesa no Rio de Janeiro.">
+<meta property="og:title" content="TERRA | Cozinha Autoral">
+<meta property="og:description" content="Onde cada prato conta uma história. Cozinha autoral no coração do Rio.">
+<meta property="og:type" content="restaurant">
+<meta name="theme-color" content="#0a0a08">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400;1,6..96,500&family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0a0a08;--bg-alt:#111110;--card:#181814;
+--copper:#b07d56;--copper-l:#c99a72;--copper-glow:rgba(176,125,86,.15);
+--cream:#f5efe6;--text:#e8e2d8;--text-muted:#8a8578;
+--burgundy:#6b2d3e;--border:rgba(176,125,86,.12);
+--radius:16px;--font-display:'Bodoni Moda',serif;--font-body:'Karla',sans-serif
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+::selection{background:var(--copper);color:var(--bg)}
+
+/* ── GRAIN OVERLAY ── */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ── ADMIN BANNER ── */
+.admin-ban{position:fixed;top:0;left:0;right:0;background:var(--copper);color:var(--bg);text-align:center;padding:8px;font-size:12px;font-weight:600;z-index:1001;text-transform:uppercase;letter-spacing:.1em}
+.admin-ban a{color:inherit;text-decoration:none;border-bottom:1px dashed var(--bg)}
+
+/* ── HEADER ── */
+.hdr{position:fixed;top:36px;left:0;right:0;z-index:1000;padding:1.25rem 3rem;transition:all .5s cubic-bezier(.4,0,.2,1)}
+.hdr.scrolled{background:rgba(10,10,8,.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:1rem 3rem}
+.hdr-in{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:var(--font-display);font-size:1.4rem;font-weight:600;color:var(--copper);text-decoration:none;letter-spacing:.2em;text-transform:uppercase}
+.logo span{color:var(--cream);font-weight:400}
+.nav{display:flex;gap:3rem;align-items:center}
+.nav-a{font-family:var(--font-body);font-size:.9rem;font-weight:400;color:var(--text);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;position:relative;transition:color .3s}
+.nav-a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;background:var(--copper);transition:width .3s ease}
+.nav-a:hover{color:var(--copper)}
+.nav-a:hover::after{width:100%}
+.btn-reserve{padding:12px 28px;background:var(--copper);color:var(--bg);font-family:var(--font-body);font-size:.85rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:none;border-radius:50px;cursor:pointer;transition:all .3s}
+.btn-reserve:hover{background:var(--copper-l);transform:translateY(-2px);box-shadow:0 8px 24px var(--copper-glow)}
+.menu-btn{display:none;flex-direction:column;gap:6px;cursor:pointer;padding:8px;background:none;border:none}
+.menu-btn span{width:28px;height:2px;background:var(--copper);transition:all .3s}
+
+/* ── MOBILE NAV ── */
+.mnav{position:fixed;top:0;right:-100%;width:85%;max-width:400px;height:100vh;background:var(--bg);z-index:1002;padding:100px 40px 40px;transition:right .5s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--border)}
+.mnav.open{right:0}
+.mnav-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1001;opacity:0;pointer-events:none;transition:opacity .3s}
+.mnav-overlay.open{opacity:1;pointer-events:all}
+.mnav-a{display:block;font-family:var(--font-body);font-size:1.8rem;font-weight:400;color:var(--text);text-decoration:none;padding:18px 0;border-bottom:1px solid var(--border);transition:color .3s}
+.mnav-a:hover{color:var(--copper)}
+.mnav-close{position:absolute;top:30px;right:30px;font-size:2rem;color:var(--copper);background:none;border:none;cursor:pointer}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;padding:120px 20px 80px;background:#0a0a08;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80') center/cover no-repeat;opacity:.6;filter:grayscale(20%);z-index:1}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.5) 0%,rgba(10,10,8,.7) 30%,rgba(10,10,8,.85) 70%,rgba(10,10,8,.95) 100%)}
+.hero-content{position:relative;z-index:10;text-align:center;max-width:900px}
+.hero-title{font-family:var(--font-display);font-size:clamp(4.5rem,18vw,14rem);font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--cream);line-height:.85;opacity:1}
+.hero-line{width:280px;height:2px;background:linear-gradient(90deg,transparent,var(--copper),transparent);margin:30px auto}
+.hero-sub{font-family:var(--font-display);font-size:clamp(1rem,2.5vw,1.6rem);font-weight:400;letter-spacing:.5em;text-transform:uppercase;color:var(--copper);margin-top:10px;opacity:1}
+.hero-tag{font-family:var(--font-body);font-size:clamp(.85rem,1.5vw,1.1rem);font-weight:300;color:var(--text-muted);letter-spacing:.2em;text-transform:uppercase;margin-top:25px;opacity:1}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;opacity:1;z-index:10}
+.hero-scroll span{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted)}
+.hero-scroll .scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--copper),transparent);animation:scrollPulse 2s infinite}
+
+@keyframes scrollPulse{0%,100%{opacity:1;transform:translateY(0)}50%{opacity:.5;transform:translateY(10px)}}
+
+/* ── SECTIONS ── */
+section{padding:100px 20px;position:relative}
+section::before{content:attr(data-num);position:absolute;top:40px;left:50%;transform:translateX(-50%);font-family:var(--font-display);font-size:1rem;font-weight:600;letter-spacing:.5em;text-transform:uppercase;color:var(--copper);opacity:1;z-index:10}
+.sec-title{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4rem);font-weight:500;color:var(--cream);text-align:center;margin-bottom:20px;margin-top:40px;letter-spacing:.05em}
+.sec-sub{font-family:var(--font-body);font-size:1rem;color:var(--copper);text-align:center;letter-spacing:.2em;text-transform:uppercase;margin-bottom:60px}
+.sec-line{width:80px;height:1px;background:var(--copper);margin:0 auto 50px}
+.sec-max{max-width:1200px;margin:0 auto}
+
+/* ── PHILOSOPHY ── */
+.phil{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;opacity:1}
+.phil-text{position:relative;padding-left:60px}
+.phil-quote{font-family:var(--font-display);font-size:2rem;font-style:italic;font-weight:400;line-height:1.5;color:var(--cream);margin-bottom:40px;position:relative}
+.phil-quote::before{content:'"';position:absolute;top:-30px;left:-60px;font-size:8rem;color:var(--copper);opacity:.3;font-family:var(--font-display);line-height:1}
+.phil p{font-size:1.05rem;color:var(--text-muted);margin-bottom:20px}
+.phil-img{position:relative;border-radius:var(--radius);overflow:hidden;height:500px}
+.phil-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%);transition:all .6s ease}
+.phil-img:hover img{filter:grayscale(0);transform:scale(1.05)}
+.phil-img::after{content:'';position:absolute;inset:0;border:1px solid var(--copper);border-radius:var(--radius);margin:15px;opacity:.5}
+
+/* ── CHEF ── */
+.chef-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center;opacity:1}
+.chef-img{position:relative;border-radius:var(--radius);overflow:hidden}
+.chef-img img{width:100%;height:600px;object-fit:cover}
+.chef-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,transparent 40%)}
+.chef-info{padding:20px 0}
+.chef-name{font-family:var(--font-display);font-size:3rem;font-weight:600;color:var(--cream);letter-spacing:.05em}
+.chef-title{font-family:var(--font-body);font-size:1rem;color:var(--copper);letter-spacing:.2em;text-transform:uppercase;margin-bottom:25px}
+.chef-bio{color:var(--text-muted);line-height:1.9;margin-bottom:30px;font-size:1.05rem}
+.chef-badges{display:flex;gap:20px;flex-wrap:wrap}
+.chef-badge{padding:10px 20px;background:var(--card);border:1px solid var(--border);border-radius:50px;font-size:.85rem;color:var(--text);letter-spacing:.05em}
+
+/* ── MENU ── */
+.menu-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:50px;flex-wrap:wrap}
+.menu-tab{padding:14px 28px;background:transparent;border:1px solid var(--border);color:var(--text-muted);font-family:var(--font-body);font-size:.85rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border-radius:50px;cursor:pointer;transition:all .3s}
+.menu-tab:hover,.menu-tab.active{background:var(--copper);border-color:var(--copper);color:var(--bg)}
+.menu-cat{display:none}
+.menu-cat.active{display:block}
+.menu-item{display:flex;justify-content:space-between;align-items:baseline;padding:25px 0;border-bottom:1px solid var(--border);transition:all .3s}
+.menu-item:hover{padding-left:15px}
+.menu-item:last-child{border-bottom:none}
+.menu-name{font-family:var(--font-display);font-size:1.3rem;font-weight:500;color:var(--cream);letter-spacing:.03em}
+.menu-desc{font-size:.95rem;color:var(--text-muted);margin-top:8px;max-width:60%}
+.menu-price{font-family:var(--font-body);font-size:1.1rem;font-weight:600;color:var(--copper);white-space:nowrap}
+.menu-high{background:linear-gradient(135deg,var(--burgundy) 0%,#4a1e2a 100%);padding:40px;border-radius:var(--radius);margin-top:40px;text-align:center}
+.menu-high h3{font-family:var(--font-display);font-size:1.8rem;color:var(--cream);margin-bottom:10px}
+.menu-high p{color:var(--text-muted);margin-bottom:15px}
+.menu-high .price{font-size:2rem;color:var(--copper);font-weight:600;font-family:var(--font-body)}
+
+/* ── GALLERY ── */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.gallery-item{position:relative;aspect-ratio:1;overflow:hidden;border-radius:var(--radius);cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gallery-item:hover img{transform:scale(1.1)}
+.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(45deg,rgba(176,125,86,.3),transparent);opacity:0;transition:opacity .3s}
+.gallery-item:hover::after{opacity:1}
+.gallery-wide{grid-column:span 2}
+.gallery-tall{grid-row:span 2;aspect-ratio:.5}
+
+/* ── TESTIMONIALS ── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.testi-card{background:var(--card);padding:40px;border-radius:var(--radius);border:1px solid var(--border);transition:all .4s}
+.testi-card:hover{transform:translateY(-8px);border-color:var(--copper)}
+.testi-stars{color:var(--copper);font-size:1.1rem;margin-bottom:20px;letter-spacing:2px}
+.testi-text{font-size:1.05rem;color:var(--text-muted);line-height:1.8;margin-bottom:25px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:15px}
+.testi-avatar{width:50px;height:50px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.3rem;color:var(--bg)}
+.testi-name{font-family:var(--font-display);font-size:1.1rem;color:var(--cream)}
+.testi-date{font-size:.85rem;color:var(--text-muted)}
+
+/* ── CTA RESERVATION ── */
+.cta-res{background:linear-gradient(135deg,var(--burgundy) 0%,#3a1520 100%);border-radius:24px;padding:80px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-res::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,var(--copper) 0%,transparent 70%);opacity:.15}
+.cta-res h2{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);color:var(--cream);margin-bottom:15px}
+.cta-res p{color:var(--text-muted);max-width:500px;margin:0 auto 35px;font-size:1.1rem}
+.cta-res .btn-reserve{font-size:1rem;padding:18px 45px;background:var(--copper);color:var(--bg)}
+
+/* ── HOURS + LOCATION ── */
+.hours-loc{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.hours-card{background:var(--card);padding:50px;border-radius:var(--radius);border:1px solid var(--border)}
+.status-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:50px;font-size:.85rem;font-weight:600;letter-spacing:.05em;margin-bottom:30px}
+.status-badge.open{background:rgba(176,125,86,.2);color:var(--copper)}
+.status-badge.closed{background:rgba(138,133,120,.2);color:var(--text-muted)}
+.status-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor}
+.hours-table{margin:30px 0}
+.hours-row{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--border)}
+.hours-row:last-child{border-bottom:none}
+.contact-item{display:flex;align-items:center;gap:12px;margin-bottom:15px;color:var(--text-muted)}
+.contact-item:hover{color:var(--copper)}
+.map-wrap{height:400px;background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+.map-wrap iframe{width:100%;height:100%}
+
+/* ── INSTAGRAM ── */
+.insta-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:15px}
+.insta-item{aspect-ratio:1;overflow:hidden;border-radius:12px;position:relative;cursor:pointer}
+.insta-item img{width:100%;height:100%;object-fit:cover;transition:all .4s}
+.insta-item:hover img{transform:scale(1.1)}
+.insta-item::after{content:'@';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:2rem;color:var(--cream);opacity:0;transition:opacity .3s;background:rgba(176,125,86,.7)}
+.insta-item:hover::after{opacity:1}
+.insta-handle{display:block;text-align:center;margin-top:30px;font-family:var(--font-body);font-size:1.1rem;color:var(--copper);letter-spacing:.1em}
+
+/* ── FOOTER ── */
+.footer{background:var(--bg-alt);padding:80px 20px 30px;border-top:1px solid var(--border)}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:60px;margin-bottom:60px}
+.footer-logo{font-family:var(--font-display);font-size:2rem;color:var(--copper);letter-spacing:.15em;margin-bottom:15px}
+.footer-tag{color:var(--text-muted);font-size:.95rem}
+.footer h4{font-family:var(--font-body);font-size:.85rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--cream);margin-bottom:20px}
+.footer-links a{display:block;color:var(--text-muted);text-decoration:none;padding:8px 0;transition:color .3s;font-size:.95rem}
+.footer-links a:hover{color:var(--copper)}
+.footer-news input{width:100%;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:50px;color:var(--text);font-family:var(--font-body);margin-bottom:12px}
+.footer-news input:focus{outline:none;border-color:var(--copper)}
+.footer-news button{width:100%;padding:14px;background:var(--copper);border:none;border-radius:50px;color:var(--bg);font-weight:600;cursor:pointer;transition:background .3s}
+.footer-news button:hover{background:var(--copper-l)}
+.footer-bottom{max-width:1200px;margin:0 auto;padding-top:30px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;color:var(--text-muted);font-size:.85rem}
+.socials{display:flex;gap:15px}
+.socials a{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:all .3s;text-decoration:none}
+.socials a:hover{border-color:var(--copper);color:var(--copper)}
+
+/* ── RESERVATION MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:2000;opacity:0;pointer-events:none;transition:opacity .4s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.95);width:90%;max-width:500px;background:var(--bg);border:1px solid var(--border);border-radius:24px;padding:40px;z-index:2001;opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);max-height:90vh;overflow-y:auto}
+.modal.open{transform:translate(-50%,-50%) scale(1);opacity:1}
+.modal-close{position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:none;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;font-size:1.2rem}
+.modal-close:hover{border-color:var(--copper);color:var(--copper)}
+.modal h2{font-family:var(--font-display);font-size:2rem;color:var(--cream);text-align:center;margin-bottom:10px}
+.modal p{text-align:center;color:var(--text-muted);margin-bottom:30px;font-size:.95rem}
+.modal-steps{display:flex;justify-content:center;gap:10px;margin-bottom:30px}
+.modal-step{width:40px;height:40px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--text-muted);transition:all .3s}
+.modal-step.active{border-color:var(--copper);background:var(--copper);color:var(--bg)}
+.modal-step.completed{border-color:var(--copper);background:var(--copper-glow);color:var(--copper)}
+.form-step{display:none}
+.form-step.active{display:block}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:.85rem;color:var(--text-muted);margin-bottom:8px;letter-spacing:.05em;text-transform:uppercase}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--font-body);font-size:1rem;transition:border-color .3s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--copper)}
+.form-group textarea{min-height:100px;resize:vertical}
+.btn-form-group{display:flex;gap:10px;margin-top:30px}
+.btn-form{flex:1;padding:14px;border-radius:12px;font-weight:600;cursor:pointer;transition:all .3s;font-family:var(--font-body)}
+.btn-primary{background:var(--copper);border:none;color:var(--bg)}
+.btn-primary:hover{background:var(--copper-l)}
+.btn-secondary{background:transparent;border:1px solid var(--border);color:var(--text-muted)}
+.btn-secondary:hover{border-color:var(--text-muted);color:var(--text)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;text-align:center;margin-top:15px}
+.cal-day{padding:12px;border-radius:10px;background:var(--card);cursor:pointer;transition:all .3s;font-size:.9rem}
+.cal-day:hover:not(.disabled){background:var(--copper-glow);border:1px solid var(--copper)}
+.cal-day.selected{background:var(--copper);color:var(--bg)}
+.cal-day.disabled{opacity:.3;cursor:not-allowed}
+.cal-header{font-size:.85rem;color:var(--text-muted);padding:5px}
+.time-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.time-slot{padding:12px;border-radius:10px;background:var(--card);border:1px solid var(--border);cursor:pointer;text-align:center;transition:all .3s}
+.time-slot:hover:not(.disabled){border-color:var(--copper)}
+.time-slot.selected{background:var(--copper);border-color:var(--copper);color:var(--bg)}
+.time-slot.disabled{opacity:.3;cursor:not-allowed}
+.confirm-box{background:var(--card);padding:25px;border-radius:16px;border:1px solid var(--border);margin-bottom:25px}
+.confirm-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+.confirm-row:last-child{border-bottom:none}
+.confirm-label{color:var(--text-muted);font-size:.9rem}
+.confirm-value{color:var(--cream);font-weight:500}
+
+/* ── WHATSAPP BUTTON ── */
+.wa-btn{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:900;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.3);transition:all .3s}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.5)}
+.wa-btn svg{width:32px;height:32px;fill:#fff}
+.wa-btn::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid #25D366;opacity:0;animation:waPulse 2s infinite}
+@keyframes waPulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.4);opacity:0}}
+
+/* ── ANIMATIONS ── */
+.{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+..visible{opacity:1;transform:translateY(0)}
+.{opacity:0;transform:translateX(-40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+..visible{opacity:1;transform:translateX(0)}
+.{opacity:0;transform:translateX(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+..visible{opacity:1;transform:translateX(0)}
+.{opacity:0;transform:scale(.9);transition:all .8s cubic-bezier(.4,0,.2,1)}
+..visible{opacity:1;transform:scale(1)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+.phil{grid-template-columns:1fr;gap:50px}
+.phil-text{padding-left:0;order:2}
+.phil-img{order:1;height:350px}
+.chef-wrap{grid-template-columns:1fr}
+.chef-img img{height:400px}
+.testi-grid{grid-template-columns:1fr}
+.gallery-grid{grid-template-columns:repeat(2,1fr)}
+.hours-loc{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+}
+@media(max-width:768px){
+.hdr{padding:1rem 1.5rem}
+.nav,.btn-reserve{display:none}
+.menu-btn{display:flex}
+.mnav{padding-top:80px}
+.hero-title{font-size:clamp(3.5rem,20vw,8rem)}
+.sec-max{padding:0 15px}
+.menu-tabs{gap:8px}
+.menu-tab{padding:10px 18px;font-size:.75rem}
+.menu-item{flex-direction:column;gap:5px}
+.menu-desc{max-width:100%;font-size:.9rem}
+.gallery-grid{grid-template-columns:1fr}
+.gallery-wide,.gallery-tall{grid-column:span 1;grid-row:span 1;aspect-ratio:1}
+.insta-grid{grid-template-columns:repeat(3,1fr)}
+.footer-grid{grid-template-columns:1fr}
+.modal{padding:30px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Admin Banner -->
+<div class="admin-ban">
+  <a href="/painel/lp-restaurante">⚡ Painel Administrativo</a>
+</div>
+
+<!-- Header -->
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a href="#" class="logo">TERRA<span>.</span></a>
+    <nav class="nav">
+      <a href="#filosofia" class="nav-a">Filosofia</a>
+      <a href="#chef" class="nav-a">Chef</a>
+      <a href="#menu" class="nav-a">Cardápio</a>
+      <a href="#galeria" class="nav-a">Galeria</a>
+      <a href="#contato" class="nav-a">Contato</a>
+    </nav>
+    <button class="btn-reserve" onclick="openModal()">Reservar Mesa</button>
+    <button class="menu-btn" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="toggleMenu()">×</button>
+  <a href="#filosofia" class="mnav-a" onclick="toggleMenu()">Filosofia</a>
+  <a href="#chef" class="mnav-a" onclick="toggleMenu()">Chef</a>
+  <a href="#menu" class="mnav-a" onclick="toggleMenu()">Cardápio</a>
+  <a href="#galeria" class="mnav-a" onclick="toggleMenu()">Galeria</a>
+  <a href="#contato" class="mnav-a" onclick="toggleMenu()">Contato</a>
+  <button class="btn-reserve" style="margin-top:30px;width:100%" onclick="openModal();toggleMenu()">Reservar Mesa</button>
+</nav>
+<div class="mnav-overlay" id="mnavOverlay" onclick="toggleMenu()"></div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">TERRA</h1>
+    <div class="hero-line"></div>
+    <p class="hero-sub">Cozinha Autoral</p>
+    <p class="hero-tag">Rio de Janeiro</p>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section id="filosofia" data-num="01">
+  <div class="sec-max">
+    <div class="sec-title">Filosofia</div>
+    <div class="sec-sub">Nossa Essência</div>
+    <div class="sec-line"></div>
+    <div class="phil">
+      <div class="phil-text ">
+        <p class="phil-quote">A gastronomia é a arte de transformar ingredientes simples em experiências inesquecíveis.</p>
+        <p>No TERRA, cada prato conta uma história. Nossa cozinha autoral celebra ingredientes locais e técnicas contemporâneas, criando harmonias que surpreendem o paladar.</p>
+        <p>Trabalhamos diretamente com produtores que compartilham nossa paixão pela qualidade. Do mar à montanha, do campo à mesa — cada elemento é escolhido com propósito.</p>
+      </div>
+      <div class="phil-img ">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Prato autorship">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chef -->
+<section id="chef" data-num="02" style="background:var(--bg-alt)">
+  <div class="sec-max">
+    <div class="sec-title">O Chef</div>
+    <div class="sec-sub">Rafael Monteiro</div>
+    <div class="sec-line"></div>
+    <div class="chef-wrap">
+      <div class="chef-img ">
+        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&q=80" alt="Chef Rafael Monteiro">
+      </div>
+      <div class="chef-info ">
+        <h2 class="chef-name">Rafael Monteiro</h2>
+        <p class="chef-title">Chef Executivo</p>
+        <p class="chef-bio">Com mais de 15 anos de experiência em cozinhass estreladas pelo mundo, Rafael retorna ao Brasil com uma visão: elevar ingredientes brasileiros à categoria de arte. Sua assinatura é a fusão de técnicas clássicas com liberdade contemporânea.</p>
+        <div class="chef-badges">
+          <span class="chef-badge">Michelin Guide 2023</span>
+          <span class="chef-badge">El Pilar · Barcelona</span>
+          <span class="chef-badge">DOM · São Paulo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Menu -->
+<section id="menu" data-num="03">
+  <div class="sec-max">
+    <h2 class="sec-title">Cardápio</h2>
+    <p class="sec-sub">Temporidade & Autoralidade</p>
+    <div class="sec-line"></div>
+
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="filterMenu('entradas')">Entradas</button>
+      <button class="menu-tab" onclick="filterMenu('principais')">Principais</button>
+      <button class="menu-tab" onclick="filterMenu('sobremesas')">Sobremesas</button>
+      <button class="menu-tab" onclick="filterMenu('bebidas')">Bebidas</button>
+    </div>
+
+    <!-- Entradas -->
+    <div class="menu-cat active" id="cat-entradas">
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Tartar de Atum Selvagem</h3>
+          <p class="menu-desc">Com abacate, gergelim preto e molho ponzu de yuzu</p>
+        </div>
+        <span class="menu-price">R$ 78</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Burrata com Tomate Confitado</h3>
+          <p class="menu-desc">Pesto de manjericão, azeite trufado e pinoli</p>
+        </div>
+        <span class="menu-price">R$ 65</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Ceviche de Robalo</h3>
+          <p class="menu-desc">Leite de tigre, coentro crispy e chips de banana</p>
+        </div>
+        <span class="menu-price">R$ 72</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Carpaccio de Filet Mignon</h3>
+          <p class="menu-desc">Rúcula, capers, parmesão e azeite 24 meses</p>
+        </div>
+        <span class="menu-price">R$ 68</span>
+      </div>
+    </div>
+
+    <!-- Principais -->
+    <div class="menu-cat" id="cat-principais">
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Risoto de Cogumelos Trufado</h3>
+          <p class="menu-desc">Mix de cogumelos, trufa negra e parmesão 30 meses</p>
+        </div>
+        <span class="menu-price">R$ 128</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Filé Mignon ao Molho de Vinho</h3>
+          <p class="menu-desc">Redução de cabernet sauvignon, purê de batata baroa</p>
+        </div>
+        <span class="menu-price">R$ 145</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Bacalhau à Brás</h3>
+          <p class="menu-desc">Ovos mexidos, batata palha, azeitona preta e cebolinha</p>
+        </div>
+        <span class="menu-price">R$ 132</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Salmão Grelhado com Crosta de Ervas</h3>
+          <p class="menu-desc">Legumes salteados e molho de ervilha</p>
+        </div>
+        <span class="menu-price">R$ 138</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Cordeiro Braseado</h3>
+          <p class="menu-desc">Polenta cremosa, legumes da estação e alecrim</p>
+        </div>
+        <span class="menu-price">R$ 155</span>
+      </div>
+    </div>
+
+    <!-- Sobremesas -->
+    <div class="menu-cat" id="cat-sobremesas">
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Crème Brûlée de Baunilha</h3>
+          <p class="menu-desc">Com framboesas frescas</p>
+        </div>
+        <span class="menu-price">R$ 42</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Petit Gâteau com Sorvete</h3>
+          <p class="menu-desc">Chocolate 70% e sorvete de creme</p>
+        </div>
+        <span class="menu-price">R$ 48</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Tiramisù Clássico</h3>
+          <p class="menu-desc">Mascarpone, café expresso e cacau</p>
+        </div>
+        <span class="menu-price">R$ 38</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Mousse de Chocolate Belga</h3>
+          <p class="menu-desc">Com frutas vermelhas</p>
+        </div>
+        <span class="menu-price">R$ 36</span>
+      </div>
+    </div>
+
+    <!-- Bebidas -->
+    <div class="menu-cat" id="cat-bebidas">
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Vinho Tinto Reserva</h3>
+          <p class="menu-desc">Taça (180ml) — Seleção especial</p>
+        </div>
+        <span class="menu-price">R$ 45</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Vinho Branco</h3>
+          <p class="menu-desc">Taça (180ml) — Sauvignon Blanc</p>
+        </div>
+        <span class="menu-price">R$ 38</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Cocktail Autoral</h3>
+          <p class="menu-desc">Criação do bartender — pergunte as opções</p>
+        </div>
+        <span class="menu-price">R$ 35</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3 class="menu-name">Água Premium</h3>
+          <p class="menu-desc">Com ou sem gás (500ml)</p>
+        </div>
+        <span class="menu-price">R$ 12</span>
+      </div>
+    </div>
+
+    <!-- Menu Degustação -->
+    <div class="menu-high">
+      <h3>Menu Degustação</h3>
+      <p>7 etapas curadas pelo Chef — Uma jornada pelo universo TERRA</p>
+      <span class="price">R$ 320</span>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="galeria" data-num="04" style="background:var(--bg-alt)">
+  <div class="sec-max">
+    <div class="sec-title">Galeria</div>
+    <div class="sec-sub">Momentos & Sabores</div>
+    <div class="sec-line"></div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-wide">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Prato especial">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" alt="Prato delicioso">
+      </div>
+      <div class="gallery-item gallery-tall">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Ambiente">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600&q=80" alt="Chef preparando">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80" alt="Sobremesa">
+      </div>
+      <div class="gallery-item gallery-wide">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Restaurante">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="depoimentos" data-num="05">
+  <div class="sec-max">
+    <div class="sec-title">Depoimentos</div>
+    <div class="sec-sub">O Que Dizem Nossos Convidados</div>
+    <div class="sec-line"></div>
+
+    <div class="testi-grid">
+      <div class="testi-card ">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Uma experiência gastronômica extraordinária. Cada prato era uma obra de arte, não apenas pelo visual mas pelo sabor impecável. O risoto de cogumelos foi o melhor que já provei."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <p class="testi-name">Marina Costa</p>
+            <p class="testi-date">Janeiro 2025</p>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card ">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Celebrei meu aniversário no TERRA e foi perfeito. O atendimento é impecável, o ambiente sofisticado e a comida de outro nível. O menu degustação vale cada centavo."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div>
+            <p class="testi-name">Roberto Almeida</p>
+            <p class="testi-date">Dezembro 2024</p>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card ">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Finally, um restaurante no Rio que entrega fine dining de verdade. O Chef Rafael é um gênio. Já voltei três vezes e sempre descubro algo novo no cardápio."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">J</div>
+          <div>
+            <p class="testi-name">Juliana Santos</p>
+            <p class="testi-date">Novembro 2024</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Reservation -->
+<section data-num="06" style="padding:60px 20px">
+  <div class="sec-max">
+    <div class="cta-res">
+      <h2>Reserve Sua Mesa</h2>
+      <p>Viva uma experiência única na gastronomia carioca. Garanta seu lugar no TERRA.</p>
+      <button class="btn-reserve" onclick="openModal()">Fazer Reserva Agora</button>
+    </div>
+  </div>
+</section>
+
+<!-- Hours + Location -->
+<section id="contato" data-num="07" style="background:var(--bg-alt)">
+  <div class="sec-max">
+    <div class="sec-title">Visite-nos</div>
+    <div class="sec-sub">Horários & Localização</div>
+    <div class="sec-line"></div>
+
+    <div class="hours-loc">
+      <div class="hours-card ">
+        <div class="status-badge" id="statusBadge">
+          <span id="statusText">Carregando...</span>
+        </div>
+        <h3>Horário de Funcionamento</h3>
+        <div class="hours-table">
+          <div class="hours-row">
+            <span>Terça a Quinta</span>
+            <span>19h às 23h30</span>
+          </div>
+          <div class="hours-row">
+            <span>Sexta e Sábado</span>
+            <span>19h às 00h</span>
+          </div>
+          <div class="hours-row">
+            <span>Domingo</span>
+            <span>12h às 16h</span>
+          </div>
+          <div class="hours-row">
+            <span>Segunda</span>
+            <span>Fechado</span>
+          </div>
+        </div>
+        <h3 style="margin-top:30px">Contato</h3>
+        <a href="tel:+552135478900" class="contact-item">(21) 3547-8900</a>
+        <a href="mailto:reservas@terra.cozinha" class="contact-item">reservas@terra.cozinha</a>
+        <p class="contact-item" style="margin-top:15px">Rua do Ouvidor, 45 — Centro<br>Rio de Janeiro — RJ</p>
+      </div>
+      <div class="map-wrap ">
+        <a href="https://www.google.com/maps/search/?api=1&query=Rua+do+Ouvidor+45+Centro+Rio+de+Janeiro" target="_blank" style="display:block;width:100%;height:100%;background:var(--card);url('https://maps.googleapis.com/maps/api/staticmap?center=Rua+do+Ouvidor+45,Rio+de+Janeiro&zoom=15&size=800x400&maptype=roadmap&key=YOUR_API_KEY') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--copper);">
+          <div style="text-align:center">
+            <div style="font-size:3rem;margin-bottom:10px">📍</div>
+            <div style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:5px">Rua do Ouvidor, 45</div>
+            <div style="font-size:.9rem;color:var(--text-muted)">Centro, Rio de Janeiro — RJ</div>
+            <div style="margin-top:15px;padding:10px 20px;background:var(--copper);color:var(--bg);border-radius:50px;font-weight:600">Abrir no Google Maps</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Instagram -->
+<section data-num="08">
+  <div class="sec-max">
+    <div class="sec-title">Siga-nos</div>
+    <div class="sec-sub">@terra.cozinha</div>
+    <div class="sec-line"></div>
+
+    <div class="insta-grid">
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt="Instagram"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80" alt="Instagram"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=400&q=80" alt="Instagram"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80" alt="Instagram"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&q=80" alt="Instagram"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80" alt="Instagram"></div>
+    </div>
+    <a href="https://instagram.com/terra.cozinha" target="_blank" class="insta-handle">@terra.cozinha</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">TERRA.</div>
+      <p class="footer-tag">Onde cada prato conta uma história.<br>Cozinha autoral no coração do Rio.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <div class="footer-links">
+        <a href="#filosofia">Filosofia</a>
+        <a href="#chef">Nossa Equipe</a>
+        <a href="#menu">Cardápio</a>
+        <a href="#galeria">Galeria</a>
+      </div>
+    </div>
+    <div>
+      <h4>Contato</h4>
+      <div class="footer-links">
+        <a href="tel:+552135478900">(21) 3547-8900</a>
+        <a href="mailto:reservas@terra.cozinha">reservas@terra.cozinha</a>
+        <a href="#contato">Localização</a>
+      </div>
+    </div>
+    <div>
+      <h4>Newsletter</h4>
+      <p class="footer-tag" style="margin-bottom:15px;font-size:.85rem">Receba novidades e eventos exclusivos.</p>
+      <form class="footer-news" onsubmit="event.preventDefault();alert('Obrigado por se inscrever!')">
+        <input type="email" placeholder="Seu e-mail" required>
+        <button type="submit">Inscrever</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 TERRA Cozinha Autoral. Todos os direitos reservados.</p>
+    <div class="socials">
+      <a href="#">IG</a>
+      <a href="#">FB</a>
+      <a href="#">WA</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/552135478900?text=Olá! Gostaria de fazer uma reserva no TERRA." class="wa-btn" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Reservation Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <button class="modal-close" onclick="closeModal()">×</button>
+  <h2>Reservar Mesa</h2>
+  <p>Complete os dados abaixo para confirmar sua reserva</p>
+
+  <div class="modal-steps">
+    <div class="modal-step active" id="step1">1</div>
+    <div class="modal-step" id="step2">2</div>
+    <div class="modal-step" id="step3">3</div>
+    <div class="modal-step" id="step4">4</div>
+  </div>
+
+  <!-- Step 1: Date & Time -->
+  <div class="form-step active" id="formStep1">
+    <div class="form-group">
+      <label>Selecione a Data</label>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+    <div class="form-group" id="timeGroup" style="display:none">
+      <label>Horário Disponível</label>
+      <div class="time-grid">
+        <div class="time-slot" onclick="selectTime(this,'19:00')">19:00</div>
+        <div class="time-slot" onclick="selectTime(this,'19:30')">19:30</div>
+        <div class="time-slot" onclick="selectTime(this,'20:00')">20:00</div>
+        <div class="time-slot" onclick="selectTime(this,'20:30')">20:30</div>
+        <div class="time-slot" onclick="selectTime(this,'21:00')">21:00</div>
+        <div class="time-slot" onclick="selectTime(this,'21:30')">21:30</div>
+        <div class="time-slot" onclick="selectTime(this,'22:00')">22:00</div>
+        <div class="time-slot" onclick="selectTime(this,'22:30')">22:30</div>
+      </div>
+    </div>
+    <div class="btn-form-group">
+      <button class="btn-form btn-secondary" onclick="closeModal()">Cancelar</button>
+      <button class="btn-form btn-primary" id="btnStep1" disabled onclick="nextStep()">Continuar</button>
+    </div>
+  </div>
+
+  <!-- Step 2: Guests -->
+  <div class="form-step" id="formStep2">
+    <div class="form-group">
+      <label>Número de Pessoas</label>
+      <select id="guests">
+        <option value="">Selecione</option>
+        <option value="1">1 Pessoa</option>
+        <option value="2">2 Pessoas</option>
+        <option value="3">3 Pessoas</option>
+        <option value="4">4 Pessoas</option>
+        <option value="5">5 Pessoas</option>
+        <option value="6">6 Pessoas</option>
+        <option value="7+">7+ Pessoas (consulte)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Ocasião Especial (opcional)</label>
+      <textarea id="special" placeholder="Aniversário, comemoração, alergias, preferências..."></textarea>
+    </div>
+    <div class="btn-form-group">
+      <button class="btn-form btn-secondary" onclick="prevStep()">Voltar</button>
+      <button class="btn-form btn-primary" id="btnStep2" onclick="nextStep()">Continuar</button>
+    </div>
+  </div>
+
+  <!-- Step 3: Personal Data -->
+  <div class="form-step" id="formStep3">
+    <div class="form-group">
+      <label>Nome Completo</label>
+      <input type="text" id="name" placeholder="Seu nome">
+    </div>
+    <div class="form-group">
+      <label>Telefone</label>
+      <input type="tel" id="phone" placeholder="(21) 99999-9999">
+    </div>
+    <div class="form-group">
+      <label>E-mail</label>
+      <input type="email" id="email" placeholder="seu@email.com">
+    </div>
+    <div class="btn-form-group">
+      <button class="btn-form btn-secondary" onclick="prevStep()">Voltar</button>
+      <button class="btn-form btn-primary" id="btnStep3" onclick="nextStep()">Confirmar</button>
+    </div>
+  </div>
+
+  <!-- Step 4: Confirmation -->
+  <div class="form-step" id="formStep4">
+    <div class="confirm-box">
+      <div class="confirm-row">
+        <span class="confirm-label">Data</span>
+        <span class="confirm-value" id="confirmDate">-</span>
+      </div>
+      <div class="confirm-row">
+        <span class="confirm-label">Horário</span>
+        <span class="confirm-value" id="confirmTime">-</span>
+      </div>
+      <div class="confirm-row">
+        <span class="confirm-label">Pessoas</span>
+        <span class="confirm-value" id="confirmGuests">-</span>
+      </div>
+      <div class="confirm-row">
+        <span class="confirm-label">Nome</span>
+        <span class="confirm-value" id="confirmName">-</span>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--text-muted);font-size:.9rem;margin-bottom:20px">Você receberá uma confirmação por WhatsApp e e-mail.</p>
+    <div class="btn-form-group">
+      <button class="btn-form btn-primary" style="width:100%" onclick="finishReservation()">Finalizar Reserva</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Reservation State
+let R={date:null,time:null,guests:null,special:null,name:null,phone:null,email:null};
+let currentStep=1;
+
+// Mobile Menu
+function toggleMenu(){document.getElementById('mnav').classList.toggle('open');document.getElementById('mnavOverlay').classList.toggle('open')}
+
+// Header Scroll
+window.addEventListener('scroll',()=>{document.getElementById('hdr').classList.toggle('scrolled',window.scrollY>50)});
+
+// Menu Tabs
+function filterMenu(cat){document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.menu-cat').forEach(c=>c.classList.remove('active'));event.target.classList.add('active');document.getElementById('cat-'+cat).classList.add('active')}
+
+// Modal
+function openModal(){document.getElementById('modalOverlay').classList.add('open');document.getElementById('modal').classList.add('open');generateCalendar()}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.getElementById('modal').classList.remove('open');currentStep=1;updateModalStep()}
+
+function nextStep(){if(currentStep<4){currentStep++;updateModalStep()}}
+function prevStep(){if(currentStep>1){currentStep--;updateModalStep()}}
+
+function updateModalStep(){
+  document.querySelectorAll('.modal-step').forEach((s,i)=>{s.classList.toggle('active',i+1<=currentStep);s.classList.toggle('completed',i+1<currentStep)});
+  document.querySelectorAll('.form-step').forEach((s,i)=>{s.classList.toggle('active',i+1===currentStep)});
+  if(currentStep===2){R.guests=document.getElementById('guests').value;R.special=document.getElementById('special').value}
+  if(currentStep===3){R.name=document.getElementById('name').value;R.phone=document.getElementById('phone').value;R.email=document.getElementById('email').value}
+  if(currentStep===4){showConfirmation()}
+}
+
+// Calendar
+function generateCalendar(){
+  const grid=document.getElementById('calGrid');
+  grid.innerHTML='<div class="cal-header">Dom</div><div class="cal-header">Seg</div><div class="cal-header">Ter</div><div class="cal-header">Qua</div><div class="cal-header">Qui</div><div class="cal-header">Sex</div><div class="cal-header">Sáb</div>';
+  const today=new Date();
+  const daysInMonth=new Date(today.getFullYear(),today.getMonth()+1,0).getDate();
+  const firstDay=new Date(today.getFullYear(),today.getMonth(),1).getDay();
+
+  for(let i=0;i<firstDay;i++)grid.innerHTML+='<div></div>';
+
+  for(let d=1;d<=daysInMonth;d++){
+    const date=new Date(today.getFullYear(),today.getMonth(),d);
+    const day=date.getDay();
+    const isPast=date<new Date(today.getFullYear(),today.getMonth(),today.getDate());
+    const isClosed=day===1||(day===0&&d>today.getDate());
+    const disabled=isPast||isClosed?' disabled':'';
+    const selected=R.date&&R.date.getDate()===d?' selected':'';
+    grid.innerHTML+=`<div class="cal-day${disabled}${selected}"${disabled?'':` onclick="selectDate(${d})"`}>${d}</div>`;
+  }
+}
+
+function selectDate(d){
+  R.date=new Date(new Date().getFullYear(),new Date().getMonth(),d);
+  generateCalendar();
+  document.getElementById('timeGroup').style.display='block';
+  document.getElementById('btnStep1').disabled=false;
+}
+
+function selectTime(el,t){document.querySelectorAll('.time-slot').forEach(s=>s.classList.remove('selected'));el.classList.add('selected');R.time=t}
+
+function showConfirmation(){
+  document.getElementById('confirmDate').textContent=R.date.toLocaleDateString('pt-BR');
+  document.getElementById('confirmTime').textContent=R.time;
+  document.getElementById('confirmGuests').textContent=R.guests;
+  document.getElementById('confirmName').textContent=R.name;
+}
+
+function finishReservation(){
+  const msg=`*Nova Reserva - TERRA*%0A%0A📅 Data: ${R.date.toLocaleDateString('pt-BR')}%0A⏰ Horário: ${R.time}%0A👥 Pessoas: ${R.guests}%0A👤 Nome: ${R.name}%0A📱 Tel: ${R.phone}%0A✉️ Email: ${R.email}%0A%0A${R.special?'📝 Obs: '+R.special:''}`;
+  window.open(`https://wa.me/552135478900?text=${msg}`,'_blank');
+  closeModal();
+}
+
+// Hours Status
+function updateHours(){const now=new Date();const day=now.getDay();const hour=now.getHours();const isOpen=(day>=2&&day<=6&&hour>=19&&hour<23.5)||(day===0&&hour>=12&&hour<16);const badge=document.getElementById('statusBadge');badge.className='status-badge '+(isOpen?'open':'closed');document.getElementById('statusText').textContent=isOpen?'Aberto Agora':'Fechado Agora'}updateHours();setInterval(updateHours,60000);
+
+// Smooth Scroll for anchors
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{const h=anchor.getAttribute('href');if(h&&h.length>1){anchor.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(h);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})}});
+
+// Button Step 2 Validation
+document.getElementById('btnStep2').addEventListener('click',()=>{if(!document.getElementById('guests').value){alert('Por favor, selecione o número de pessoas');return;}nextStep()});
+
+// Button Step 3 Validation
+document.getElementById('btnStep3').addEventListener('click',()=>{const n=document.getElementById('name').value;const p=document.getElementById('phone').value;const e=document.getElementById('email').value;if(!n||!p||!e){alert('Por favor, preencha todos os campos');return;}nextStep()});
+</script>
+</body>
+</html>

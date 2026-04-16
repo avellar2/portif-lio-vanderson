@@ -14,12 +14,15 @@ import Footer from './components/Footer.jsx'
 // Páginas de projetos
 import LPOdontologia from './pages/lp-odontologia/LPOdontologia.jsx'
 import LPAdvocacia from './pages/lp-advocacia/LPAdvocacia.jsx'
+import LPRestaurante from './pages/lp-restaurante/LPRestaurante.jsx'
 import SistemaCSDT from './pages/sistema-csdt/SistemaCSDT.jsx'
 import LojaVirtual from './pages/loja-virtual/LojaVirtual.jsx'
 import AppDelivery from './pages/app-delivery/AppDelivery.jsx'
 import SistemaAgendamento from './pages/sistema-agendamento/SistemaAgendamento.jsx'
 import CardapioDigital from './pages/cardapio-digital/CardapioDigital.jsx'
 import PainelLPDentista from './pages/painel-lp-dentista/PainelLPDentista.jsx'
+import PainelLPAdvogado from './pages/painel-lp-advogado/PainelLPAdvogado.jsx'
+import PainelLPRestaurante from './pages/painel-lp-restaurante/PainelLPRestaurante.jsx'
 
 function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -56,6 +59,7 @@ function App() {
         {/* Rotas dos projetos */}
         <Route path="/projeto/lp-odontologia" element={<LPOdontologia />} />
         <Route path="/projeto/lp-advocacia" element={<LPAdvocacia />} />
+        <Route path="/projeto/lp-restaurante" element={<LPRestaurante />} />
         <Route path="/projeto/sistema-csdt" element={<SistemaCSDT />} />
         <Route path="/projeto/loja-virtual" element={<LojaVirtual />} />
         <Route path="/projeto/app-delivery" element={<AppDelivery />} />
@@ -64,6 +68,8 @@ function App() {
 
         {/* Paineis Administrativos */}
         <Route path="/painel/lp-dentista" element={<PainelLPDentista />} />
+        <Route path="/painel/lp-advogado" element={<PainelLPAdvogado />} />
+        <Route path="/painel/lp-restaurante" element={<PainelLPRestaurante />} />
       </Routes>
     </BrowserRouter>
   )

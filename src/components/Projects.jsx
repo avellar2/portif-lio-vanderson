@@ -53,9 +53,27 @@ const projects = [
     title: "LP Clínica Odontológica",
     description: "Landing Page com simulador de tratamento, agendamento online e captura de leads.",
     tags: ["React", "Next.js", "Tailwind", "Firebase"],
-    link: "/projeto/lp-odontologia",
+    link: "/lp-odontologia/index.html",
     gradient: "from-cyan-500 via-teal-500 to-green-500",
     icon: "🦷",
+  },
+  {
+    category: "Landing Page",
+    title: "LP Escritório de Advocacia",
+    description: "LP premium com funil de qualificação, agendamento de consultas e painel administrativo para gestão de leads.",
+    tags: ["HTML", "CSS", "JavaScript", "React"],
+    link: "/lp-advogados/index.html",
+    gradient: "from-amber-500 via-yellow-600 to-amber-700",
+    icon: "⚖️",
+  },
+  {
+    category: "Landing Page",
+    title: "LP Restaurante Alta Gastronomia",
+    description: "LP premium para restaurante fine dining com cardápio digital, sistema de reservas multi-etapa e painel administrativo.",
+    tags: ["HTML", "CSS", "JavaScript", "React"],
+    link: "/lp-restaurante/index.html",
+    gradient: "from-orange-600 via-amber-700 to-yellow-700",
+    icon: "🍽️",
   },
 ]
 
@@ -136,15 +154,29 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <Link
-                  to={project.link}
-                  className="project-link"
-                >
-                  Ver projeto
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
+                {project.category === 'Landing Page' ? (
+                  <a
+                    href={project.link}
+                    className="project-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Ver projeto
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                ) : (
+                  <Link
+                    to={project.link}
+                    className="project-link"
+                  >
+                    Ver projeto
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                )}
               </div>
             </div>
           ))}
