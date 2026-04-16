@@ -22,6 +22,15 @@ const projects = [
     icon: "🛒",
   },
   {
+    category: "E-commerce",
+    title: "Loja Tech Premium",
+    description: "E-commerce tech com specs dinâmicas, carrinho inteligente e checkout seguro via Stripe.",
+    tags: ["React", "Stripe", "Tailwind", "Firebase"],
+    link: "/projeto/loja-tech",
+    gradient: "from-cyan-400 via-blue-500 to-indigo-600",
+    icon: "⚡",
+  },
+  {
     category: "Delivery",
     title: "App de Delivery",
     description: "Sistema de pedidos com rastreamento em tempo real, painel administrativo e notificações.",
@@ -47,6 +56,15 @@ const projects = [
     link: "/projeto/cardapio-digital",
     gradient: "from-amber-500 via-yellow-500 to-orange-500",
     icon: "🎫",
+  },
+  {
+    category: "Restaurantes",
+    title: "Cardápio Pizzaria",
+    description: "Cardápio digital para pizzaria com pedidos via QR Code, pizza builder e conta individual.",
+    tags: ["React", "QR Code", "Tailwind", "Firebase"],
+    link: "/projeto/cardapio-pizzaria",
+    gradient: "from-red-500 via-orange-500 to-red-600",
+    icon: "🍕",
   },
   {
     category: "Landing Page",

@@ -20,6 +20,8 @@ import LojaVirtual from './pages/loja-virtual/LojaVirtual.jsx'
 import AppDelivery from './pages/app-delivery/AppDelivery.jsx'
 import SistemaAgendamento from './pages/sistema-agendamento/SistemaAgendamento.jsx'
 import CardapioDigital from './pages/cardapio-digital/CardapioDigital.jsx'
+import CardapioPizzaria from './pages/cardapio-pizzaria/CardapioPizzaria.jsx'
+import LojaTech from './pages/loja-tech/LojaTech.jsx'
 import PainelLPDentista from './pages/painel-lp-dentista/PainelLPDentista.jsx'
 import PainelLPAdvogado from './pages/painel-lp-advogado/PainelLPAdvogado.jsx'
 import PainelLPRestaurante from './pages/painel-lp-restaurante/PainelLPRestaurante.jsx'
@@ -65,6 +67,8 @@ function App() {
         <Route path="/projeto/app-delivery" element={<AppDelivery />} />
         <Route path="/projeto/sistema-agendamento" element={<SistemaAgendamento />} />
         <Route path="/projeto/cardapio-digital" element={<CardapioDigital />} />
+        <Route path="/projeto/cardapio-pizzaria" element={<CardapioPizzaria />} />
+        <Route path="/projeto/loja-tech" element={<LojaTech />} />
 
         {/* Paineis Administrativos */}
         <Route path="/painel/lp-dentista" element={<PainelLPDentista />} />
