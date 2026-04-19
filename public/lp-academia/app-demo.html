@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRONBOX App - Demo Interativa</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--red:#E63946;--red-dark:#C1121F;
+--black:#0A0A0A;--black-light:#141414;--black-lighter:#1E1E1E;
+--white:#FFFFFF;--gray:#F4F4F4;--gray-dark:#2B2B2B;
+}
+body{font-family:'Montserrat',sans-serif;background:#121212;color:var(--white);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden}
+.demowrapper{display:flex;gap:60px;align-items:center;justify-content:center;max-width:1200px;width:100%;flex-wrap:wrap}
+.demotext{flex:1;min-width:300px}
+.demotext h1{font-family:'Teko',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:var(--white);line-height:.9;text-transform:uppercase;margin-bottom:15px}
+.demotext p{font-size:1rem;color:rgba(255,255,255,.7);margin-bottom:30px;line-height:1.7}
+.demotext .store{display:flex;gap:10px;margin-top:20px}
+.store-btn{display:flex;align-items:center;gap:12px;padding:12px 24px;background:var(--red);color:var(--white);text-decoration:none;border-radius:8px;font-weight:700;transition:all .3s}
+.store-btn:hover{background:var(--red-dark);transform:translateY(-2px)}
+.store-btn svg{width:24px;height:24px}
+.store-text{font-size:.8rem;font-weight:600}
+
+/* Phone Frame */
+.phone{width:320px;height:650px;background:#000;border-radius:40px;position:relative;box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 0 2px rgba(255,255,255,.1);padding:12px;flex-shrink:0}
+.phone::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:25px;background:#000;border-radius:0 0 15px 15px;z-index:10}
+.phone-notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:100px;height:25px;background:#000;border-radius:0 0 15px 15px;z-index:10}
+.phone-screen{position:absolute;top:12px;left:12px;right:12px;bottom:12px;background:#121212;border-radius:28px;overflow:hidden}
+.app-container{width:100%;height:100%;position:relative;overflow:hidden}
+.screen{position:absolute;top:0;left:0;width:100%;height:100%;display:none;flex-direction:column;overflow-y:auto;overflow-x:hidden}
+.screen.active{display:flex}
+.screen.scrollable{-webkit-overflow-scrolling:touch}
+
+/* Status Bar */
+.statusbar{height:44px;background:var(--black);display:flex;align-items:center;justify-content:space-between;padding:0 20px;flex-shrink:0;font-size:.75rem;color:rgba(255,255,255,.8);position:relative;z-index:10}
+.statusbar span.time{position:absolute;left:50%;transform:translateX(-50%)}
+
+/* App Header */
+.app-header{background:var(--black-light);padding:60px 20px 15px;flex-shrink:0;display:flex;align-items:center;gap:15px;border-bottom:1px solid rgba(255,255,255,.1);position:relative;z-index:5}
+.app-back{width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);text-decoration:none;cursor:pointer;transition:all .3s}
+.app-back:hover{background:var(--red)}
+.app-user{flex:1;display:flex;align-items:center;gap:10px}
+.app-avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-dark));border:3px solid var(--red-dark)}
+.app-info h3{font-size:1rem;font-weight:700;color:var(--white)}
+.app-info p{font-size:.8rem;color:rgba(255,255,255,.6)}
+
+/* Bottom Nav */
+.bottom-nav{height:70px;background:var(--black-light);border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-around;align-items:center;padding:0 10px;flex-shrink:0;position:relative;z-index:10}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:rgba(255,255,255,.5);transition:all .3s;padding:8px;font-size:.7rem}
+.nav-item svg{width:24px;height:24px;transition:all .3s}
+.nav-item.active{color:var(--red)}
+.nav-item.active svg{transform:scale(1.1)}
+.nav-item:active{transform:scale(.9)}
+
+/* Home Screen */
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:15px;padding-top:60px}
+.home-card{background:var(--black-light);border-radius:16px;padding:20px;cursor:pointer;transition:all .3s;border:1px solid rgba(255,255,255,.08)}
+.home-card:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:0 8px 24px rgba(230,57,70,.2)}
+.home-card.featured{grid-column:span 2;background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%)}
+.home-card h3{font-size:.9rem;font-weight:700;margin-bottom:8px}
+.home-card p{font-size:.75rem;color:rgba(255,255,255,.6)}
+.home-card-featured{color:var(--white)}
+.home-card-featured p{color:rgba(255,255,255,.9)}
+.quick-actions{padding:15px}
+.quick-btn{width:100%;padding:15px;background:var(--black-lighter);border:1px solid var(--red);border-radius:12px;color:var(--white);font-size:.9rem;font-weight:700;text-align:center;cursor:pointer;transition:all .3s;margin-bottom:10px}
+.quick-btn:hover{background:var(--red)}
+.quick-btn:last-child{margin-bottom:0}
+.workout-card{background:var(--black-lighter);border-radius:16px;overflow:hidden;margin-bottom:15px;cursor:pointer}
+.workout-img{height:120px;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;font-size:2rem}
+.workout-info{padding:15px}
+.workout-info h4{font-size:.9rem;font-weight:700;margin-bottom:5px}
+.workout-info p{font-size:.75rem;color:rgba(255,255,255,.6)}
+
+/* Explore Screen */
+.explore-hero{height:200px;background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%);padding:60px 20px 20px;display:flex;align-items:center}
+.explore-hero h2{font-size:1.5rem;font-weight:700;color:var(--white)}
+.explore-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;padding:15px;padding-bottom:80px}
+.category-card{background:var(--black-light);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .3s}
+.category-card:hover{transform:scale(1.02)}
+.category-card img{width:100%;height:120px;object-fit:cover}
+.category-info{padding:15px}
+.category-info h3{font-size:.9rem;font-weight:700;color:var(--white)}
+
+/* Workout Detail Screen */
+.workout-detail{padding:20px;padding-top:60px}
+.workout-detail h2{font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:20px}
+.exercise-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.exercise-item{background:var(--black-light);border-radius:12px;padding:15px;display:flex;align-items:center;gap:15px;cursor:pointer;transition:all .3s}
+.exercise-item:hover{background:var(--black-lighter)}
+.exercise-icon{width:40px;height:40px;background:rgba(230,57,70,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.exercise-info h4{font-size:.9rem;font-weight:700;color:var(--white);margin-bottom:3px}
+.exercise-info p{font-size:.75rem;color:rgba(255,255,255,.6)}
+.exercise-meta{font-size:.7rem;color:var(--red);font-weight:600}
+.start-btn{width:100%;padding:18px;background:var(--red);border:none;border-radius:12px;color:var(--white);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;transition:all .3s;margin-top:20px}
+.start-btn:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(230,57,70,.4)}
+
+/* Progress Screen */
+.progress-hero{height:150px;background:linear-gradient(135deg,var(--red) 0%,var(--black) 100%);padding:60px 20px 20px;display:flex;align-items:center}
+.progress-hero h2{font-size:1.3rem;font-weight:700;color:var(--white)}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;padding:15px}
+.stat-card{background:var(--black-light);border-radius:16px;padding:20px;text-align:center}
+.stat-card h4{font-size:1.8rem;font-weight:700;color:var(--red);font-family:'Teko',sans-serif;line-height:1}
+.stat-card p{font-size:.75rem;color:rgba(255,255,255,.6)}
+.chart-container{padding:15px}
+.chart-bar{height:8px;background:var(--black-lighter);border-radius:4px;margin-bottom:8px;overflow:hidden}
+.chart-fill{height:var(--h);background:linear-gradient(90deg,var(--red),var(--red-light));transition:height .5s}
+.chart-label{display:flex;justify-content:space-between;font-size:.75rem;color:rgba(255,255,255,.8);margin-bottom:5px}
+.achievements{padding:15px}
+.achievement{display:flex;align-items:center;gap:12px;padding:12px;background:var(--black-light);border-radius:10px;margin-bottom:10px}
+.achievement-icon{width:32px;height:32px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.achievement-text h4{font-size:.85rem;font-weight:700;color:var(--white);margin-bottom:2px}
+.achievement-text p{font-size:.7rem;color:rgba(255,255,255,.6)}
+
+/* Schedule Screen */
+.schedule-hero{height:150px;background:linear-gradient(135deg,var(--red) 0%,var(--black) 100%);padding:60px 20px 20px;display:flex;align-items:center}
+.schedule-hero h2{font-size:1.3rem;font-weight:700;color:var(--white)}
+.calendar-container{padding:15px}
+.week-days{display:flex;justify-content:space-between;margin-bottom:15px}
+.day-btn{flex:1;padding:12px;background:var(--black-light);border:1px solid rgba(255,255,255,.2);border-radius:10px;color:var(--white);font-size:.85rem;font-weight:600;text-align:center;cursor:pointer;transition:all .3s}
+.day-btn.active{background:var(--red);border-color:var(--red)}
+.day-btn:hover:not(.active){background:var(--black-lighter)}
+.classes-list{display:flex;flex-direction:column;gap:10px}
+.class-card{background:var(--black-light);border-radius:12px;padding:15px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all .3s}
+.class-card:hover{border-color:var(--red)}
+.class-time{font-size:.9rem;font-weight:700;color:var(--white)}
+.class-info h4{font-size:.85rem;font-weight:600;color:var(--white);margin-bottom:2px}
+.class-info p{font-size:.75rem;color:rgba(255,255,255,.6)}
+.class-spots{font-size:.8rem;color:var(--red);font-weight:600}
+.book-btn{padding:8px 16px;background:var(--red);border:none;border-radius:8px;color:var(--white);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .3s}
+.book-btn:hover{background:var(--red-dark)}
+
+/* Profile Screen */
+.profile-hero{height:150px;background:linear-gradient(135deg,var(--red) 0%,var(--black) 100%);padding:60px 20px 20px;display:flex;align-items:center}
+.profile-hero h2{font-size:1.3rem;font-weight:700;color:var(--white)}
+.profile-header{padding:20px;display:flex;align-items:center;gap:15px;margin-bottom:20px}
+.profile-avatar-large{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-dark));border:4px solid var(--red-dark);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:700}
+.profile-stats{flex:1}
+.profile-stats h3{font-size:1rem;font-weight:700;color:var(--white)}
+.profile-stats p{font-size:.8rem;color:rgba(255,255,255,.6)}
+.menu-list{padding:15px}
+.menu-item{display:flex;align-items:center;justify-content:space-between;padding:15px;background:var(--black-light);border-radius:12px;margin-bottom:10px;cursor:pointer;transition:all .3s}
+.menu-item:hover{border-color:var(--red)}
+.menu-item h4{font-size:.9rem;font-weight:600;color:var(--white)}
+.menu-item p{font-size:.75rem;color:rgba(255,255,255,.6)}
+.menu-item svg{width:24px;height:24px;color:var(--red)}
+
+/* Animations */
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+.screen.active>.app-header{animation:slideIn .4s ease}
+.screen.active>.content{animation:slideIn .4s ease .1s both}
+
+/* Responsive */
+@media(max-width:768px){
+.demowrapper{flex-direction:column;text-align:center}
+.demotext{margin-bottom:40px}
+.demotext h1{font-size:2rem}
+.phone{width:100%;max-width:320px;height:600px}
+}
+</style>
+</head>
+<body>
+<div class="demowrapper">
+  <div class="demotext">
+    <h1>Experimente o App</h1>
+    <p>Teste todas as funcionalidades do IRONBOX diretamente no seu navegador. Navegue, explore e veja como é fácil treinar onde quiser.</p>
+    <div class="store">
+      <a href="#download" class="store-btn">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.6 9.49l-3.4-3.4c-.4-.4-.9-.6-1.4-.6-.6 0-1.1.2-1.5.5l-1.5 1.5c-.4.4-.5 1-.2 1.4l1.5 1.5c.3.3.8.5 1.3.5.6 0 1-.2 1.4-.5l1.5-1.5c.4-.4.5-1 .2-1.4l-1.5-1.5c-.3-.3-.5-.8-.5-1.3zM7 16c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v9c0 1.1-.9 2-2 2H7z"/></svg>
+        <div class="store-text">
+          <strong>Baixar na</strong>
+          <span>App Store</span>
+        </div>
+      </a>
+      <a href="#download" class="store-btn">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 001.423-1.272l-2.808-1.626L15.7 9.509zM5.838 20.93l8.635-8.635 2.808 1.626a1 1 0 01-.483 1.874L5.838 20.93z"/></svg>
+        <div class="store-text">
+          <strong>Disponível no</strong>
+          <span>Google Play</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="phone">
+    <div class="phone-notch"></div>
+    <div class="phone-screen">
+      <div class="screen scrollable" id="home-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="time">9:41</span>
+        </div>
+        <div class="app-header">
+          <div class="app-user">
+            <div class="app-avatar"></div>
+            <div class="app-info">
+              <h3>Olá, atleta!</h3>
+              <p>Pronto pra treinar?</p>
+            </div>
+          </div>
+        </div>
+        <div class="content" style="padding:15px">
+          <h2 style="font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:15px">Continue de onde parou</h2>
+          <div class="home-grid">
+            <div class="home-card featured" onclick="openScreen('workout')">
+              <div class="home-card-featured">
+                <h3>🏋️ Treino de Hoje</h3>
+                <p>Peito + Tríceps · 45 min</p>
+              </div>
+            </div>
+            <div class="home-card" onclick="openScreen('progress')">
+              <h3>📊 Seu Progresso</h3>
+              <p>5 treinos esta semana</p>
+            </div>
+            <div class="home-card" onclick="openScreen('schedule')">
+              <h3>📅 Agendar Aula</h3>
+              <p>Veja os horários</p>
+            </div>
+            <div class="home-card" onclick="openScreen('explore')">
+              <h3>🎯 Explorar</h3>
+              <p>Modalidades</p>
+            </div>
+          </div>
+          <div class="quick-actions">
+            <button class="quick-btn">Começar Treino Agora</button>
+          </div>
+          <div class="workout-card">
+            <div class="workout-img">🔥</div>
+            <div class="workout-info">
+              <h4>Treino Recomendado</h4>
+              <p>Full Body · 30 min</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen scrollable" id="workout-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="time">9:41</span>
+        </div>
+        <div class="app-header">
+          <a class="app-back" onclick="openScreen('home')">←</a>
+          <div class="app-user" style="flex:1">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--white)">Workout</h3>
+          </div>
+        </div>
+        <div class="content" style="padding:20px">
+          <div class="workout-detail">
+            <h2>🏋️ Peito + Tríceps</h2>
+            <p style="color:rgba(255,255,255,.6);margin-bottom:20px">45 min · Intermediário · 8 exercícios</p>
+
+            <div class="exercise-list">
+              <div class="exercise-item">
+                <div class="exercise-icon">💪</div>
+                <div class="exercise-info">
+                  <h4>Supino Reto</h4>
+                  <p>4 séries x 12 reps</p>
+                  <span class="exercise-meta">12kg</span>
+                </div>
+              </div>
+              <div class="exercise-item">
+                <div class="exercise-icon">🏋️</div>
+                <div class="exercise-info">
+                  <h4>Supino Inclinado</h4>
+                  <p>3 séries x 15 reps</p>
+                  <span class="exercise-meta">corpo livre</span>
+                </div>
+              </div>
+              <div class="exercise-item">
+                <div class="exercise-icon">💪</div>
+                <div class="exercise-info">
+                  <h4>Tríceps Testa</h4>
+                  <p>4 séries x 10 reps</p>
+                  <span class="exercise-meta">8kg</span>
+                </div>
+              </div>
+              <div class="exercise-item">
+                <div class="exercise-icon">🎯</div>
+                <div class="exercise-info">
+                  <h4>Flexão de Braço</h4>
+                  <p>3 séries x 12 reps</p>
+                  <span class="exercise-meta">5kg</span>
+                </div>
+              </div>
+              <div class="exercise-item">
+                <div class="exercise-icon">🔥</div>
+                <div class="exercise-info">
+                  <h4>Cross Over</h4>
+                  <p>3 séries x 10 reps</p>
+                  <span class="exercise-meta">barra</span>
+                </div>
+              </div>
+              <div class="exercise-item">
+                <div class="exercise-icon">💪</div>
+                <div class="exercise-info">
+                  <h4>Tríceps Pulley</h4>
+                  <p>3 séries x 15 reps</p>
+                  <span class="exercise-meta">6kg</span>
+                </div>
+              </div>
+            </div>
+
+            <button class="start-btn" onclick="openScreen('progress')">Começar Treino</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen scrollable" id="progress-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="time">9:41</span>
+        </div>
+        <div class="app-header">
+          <a class="app-back" onclick="openScreen('home')">←</a>
+          <div class="app-user" style="flex:1">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--white)">Progresso</h3>
+          </div>
+        </div>
+        <div class="content" style="padding:20px">
+          <div class="progress-hero">
+            <h2>Seu Progresso</h2>
+          </div>
+          <div class="stats-row">
+            <div class="stat-card">
+              <h4>12</h4>
+              <p>Treinos</p>
+            </div>
+            <div class="stat-card">
+              <h4>480</h4>
+              <p>minutos</p>
+            </div>
+            <div class="stat-card">
+              <h4>3.2k</h4>
+              <p>kcalorias</p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <div class="chart-label">
+              <span>Meta Semanal</span>
+              <span>5/7 dias</span>
+            </div>
+            <div class="chart-bar">
+              <div class="chart-fill" style="width:71%"></div>
+            </div>
+            <div class="chart-label">
+              <span>Mês Atual</span>
+              <span>18/30 dias</span>
+            </div>
+            <div class="chart-bar">
+              <div class="chart-fill" style="width:60%"></div>
+            </div>
+          </div>
+          <div class="achievements">
+            <div class="achievement">
+              <div class="achievement-icon">🏆</div>
+              <div class="achievement-text">
+                <h4>7 dias seguidos!</h4>
+                <p>Mantenha o ritmo</p>
+              </div>
+            </div>
+            <div class="achievement">
+              <div class="achievement-icon">🔥</div>
+              <div class="achievement-text">
+                <h4>Recorde pessoal!</h4>
+                <p>100kg no supino</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen scrollable" id="schedule-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="time">9:41</span>
+        </div>
+        <div class="app-header">
+          <a class="app-back" onclick="openScreen('home')">←</a>
+          <div class="app-user" style="flex:1">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--white)">Agendar</h3>
+          </div>
+        </div>
+        <div class="content">
+          <div class="schedule-hero">
+            <h2>Aulas de Hoje</h2>
+          </div>
+          <div class="week-days">
+            <div class="day-btn active">Seg</div>
+            <div class="day-btn">Ter</div>
+            <div class="day-btn">Qua</div>
+            <div class="day-btn">Qui</div>
+            <div class="day-btn">Sex</div>
+            <div class="day-btn">Sáb</div>
+          </div>
+          <div class="classes-list">
+            <div class="class-card">
+              <div>
+                <div class="class-time">14:00</div>
+                <div class="class-info">
+                  <h4>Funcional</h4>
+                  <p>Com Rodrigo</p>
+                </div>
+              </div>
+              <div class="class-spots">3 vagas</div>
+              <button class="book-btn" onclick="alert('Aula agendada!')">Reservar</button>
+            </div>
+            <div class="class-card">
+              <div>
+                <div class="class-time">16:00</div>
+                <div class="class-info">
+                  <h4>Spinning</h4>
+                  <p>Com Juliana</p>
+                </div>
+              </div>
+              <div class="class-spots">5 vagas</div>
+              <button class="book-btn" onclick="alert('Aula agendada!')">Reservar</button>
+            </div>
+            <div class="class-card">
+              <div>
+                <div class="class-time">18:00</div>
+                <div class="class-info">
+                  <h4>Yoga</h4>
+                  <p>Com Carla</p>
+                </div>
+              </div>
+              <div class="class-spots">8 vagas</div>
+              <button class="book-btn" onclick="alert('Aula agendada!')">Reservar</button>
+            </div>
+            <div class="class-card">
+              <div>
+                <div class="class-time">19:00</div>
+                <div class="class-info">
+                  <h4>Cross Training</h4>
+                  <p>Com Marcos</p>
+                </div>
+              </div>
+              <div class="class-spots">4 vagas</div>
+              <div style="padding:8px;background:rgba(230,57,70,.15);border-radius:6px;font-size:.7rem;font-weight:600;color:var(--red);text-align:center">Lotado</div>
+            </div>
+            <div class="class-card">
+              <div>
+                <div class="class-time">20:00</div>
+                <div class="class-info">
+                  <h4>Boxe</h4>
+                  <p>Com Rafael</p>
+                </div>
+              </div>
+              <div class="class-spots">6 vagas</div>
+              <button class="book-btn" onclick="alert('Aula agendada!')">Reservar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen scrollable" id="explore-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="time">9:41</span>
+        </div>
+        <div class="app-header">
+          <a class="app-back" onclick="openScreen('home')">←</a>
+          <div class="app-user" style="flex:1">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--white)">Explorar</h3>
+          </div>
+        </div>
+        <div class="content">
+          <div class="explore-hero">
+            <h2>Modalidades</h2>
+          </div>
+          <div class="explore-grid">
+            <div class="category-card">
+              <div style="height:100px;background:linear-gradient(135deg,#E63946,#C1121F);display:flex;align-items:center;justify-content:center;font-size:2rem">🏋️</div>
+              <div class="category-info">
+                <h3>Musculação</h3>
+                <p>12 modalidades</p>
+              </div>
+            </div>
+            <div class="category-card">
+              <div style="height:100px;background:linear-gradient(135deg,#2B2B2B,#3a3a3a);display:flex;align-items:center;justify-content:center;font-size:2rem">🧘</div>
+              <div class="category-info">
+                <h3>Yoga</h3>
+                <p>8 modalidades</p>
+              </div>
+            </div>
+            <div class="category-card">
+              <div style="height:100px;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);display:flex;align-items:center;justify-content:center;font-size:2rem">🔥</div>
+              <div class="category-info">
+                <h3>Funcional</h3>
+                <p>15 modalidades</p>
+              </div>
+            </div>
+            <div class="category-card">
+              <div style="height:100px;background:linear-gradient(135deg,#2B2B2B,#3a3a3a);display:flex;align-items:center;justify-content:center;font-size:2rem">💪</div>
+              <div class="category-info">
+                <h3>Cardio</h3>
+                <p>10 modalidades</p>
+              </div>
+            </div>
+            <div class="category-card">
+              <div style="height:100px;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);display:flex;align-items:center;justify-content:center;font-size:2rem">🏃</div>
+              <div class="category-info">
+                <h3>Corrida</h3>
+                <p>6 modalidades</p>
+              </div>
+            </div>
+            <div class="category-card">
+              <div style="height:100px;background:linear-gradient(135deg,#2B2B2B,#3a3a3a);display:flex;align-items:center;justify-content:center;font-size:2rem">🧘</div>
+              <div class="category-info">
+                <h3>Pilates</h3>
+                <p>7 modalidades</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen scrollable" id="profile-screen">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="time">9:41</span>
+        </div>
+        <div class="app-header">
+          <a class="app-back" onclick="openScreen('home')">←</a>
+          <div class="app-user" style="flex:1">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--white)">Perfil</h3>
+          </div>
+        </div>
+        <div class="content" style="padding:20px">
+          <div class="profile-header">
+            <div class="profile-avatar-large">V</div>
+            <div class="profile-stats">
+              <h3>Vander Silva</h3>
+              <p>Membro Gold · Rio de Janeiro</p>
+            </div>
+          </div>
+          <div class="menu-list">
+            <div class="menu-item">
+              <div>
+                <h4>Meus Planos</h4>
+                <p>Gerencie suas assinaturas</p>
+              </div>
+              <svg style="width:24px;height:24px;color:var(--red)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Medidas</h4>
+                <p>Peso, gordura corporal, etc</p>
+              </div>
+              <svg style="width:24px;height:24px;color:var(--red)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Conquistas</h4>
+                <p>Conquistas e medalhas</p>
+              </div>
+              <svg style="width:24px;height:24px;color:var(--red)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Configurações</h4>
+                <p>Notificações, privacidade</p>
+              </div>
+              <svg style="width:24px;height:24px;color:var(--red)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 1006 6 3 3 0 006-6 3 3 0 016-6 3 3 0 006 6 3 3 0 01-6-6z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <div class="bottom-nav">
+        <a href="#" class="nav-item active" onclick="openScreen('home'); return false;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <span>Início</span>
+        </a>
+        <a href="#" class="nav-item" onclick="openScreen('workout'); return false;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.57 14.86L22 13.43 20.57 9 12 3l-8.57 6L3 13.43 4.43 14.86 12 8.43z"/></svg>
+          <span>Treino</span>
+        </a>
+        <a href="#" class="nav-item" onclick="openScreen('progress'); return false;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+          <span>Progresso</span>
+        </a>
+        <a href="#" class="nav-item" onclick="openScreen('schedule'); return false;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+          <span>Agendar</span>
+        </a>
+        <a href="#" class="nav-item" onclick="openScreen('profile'); return false;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          <span>Perfil</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const screenToNavIndex = {
+  'home': 0,
+  'workout': 1,
+  'progress': 2,
+  'schedule': 3,
+  'profile': 4
+};
+
+function openScreen(screenId) {
+  // Hide all screens
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+
+  // Show selected screen
+  const targetScreen = document.getElementById(screenId + '-screen');
+  if (targetScreen) {
+    targetScreen.classList.add('active');
+  }
+
+  // Update nav items
+  document.querySelectorAll('.nav-item').forEach((item, index) => {
+    item.classList.remove('active');
+    if (index === screenToNavIndex[screenId]) {
+      item.classList.add('active');
+    }
+  });
+}
+
+// Initialize home screen
+document.addEventListener('DOMContentLoaded', () => {
+  openScreen('home');
+});
+</script>
+</body>
+</html>

@@ -93,6 +93,25 @@ const projects = [
     gradient: "from-orange-600 via-amber-700 to-yellow-700",
     icon: "🍽️",
   },
+  {
+    category: "Landing Page",
+    title: "LP Academia IRONBOX",
+    description: "LP de alta conversão para download de app de academia com design atlético energético, CTAs de app store e planos.",
+    tags: ["HTML", "CSS", "JavaScript", "React"],
+    link: "/lp-academia/index.html",
+    gradient: "from-red-600 via-orange-500 to-red-700",
+    icon: "💪",
+  },
+  {
+    category: "App Demo",
+    title: "IRONBOX App Interativo",
+    description: "Demo interativa completa do app dentro de mockup de celular com 6 telas navegáveis: home, treinos, progresso, agenda e perfil.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    link: "/lp-academia/app-demo.html",
+    gradient: "from-red-500 via-rose-500 to-pink-600",
+    icon: "📱",
+    featured: true,
+  },
 ]
 
 export default function Projects() {
@@ -119,7 +138,7 @@ export default function Projects() {
 
         {/* Filtros por Categoria */}
         <div className="flex flex-wrap gap-2 mb-10 justify-center">
-          {['Todos', 'SaaS', 'E-commerce', 'Delivery', 'Agendamento', 'Restaurantes', 'Landing Page'].map((cat) => (
+          {['Todos', 'SaaS', 'E-commerce', 'Delivery', 'Agendamento', 'Restaurantes', 'Landing Page', 'App Demo'].map((cat) => (
             <button
               key={cat}
               onClick={() => setCategoriaAtiva(cat)}

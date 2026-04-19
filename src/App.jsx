@@ -15,6 +15,7 @@ import Footer from './components/Footer.jsx'
 import LPOdontologia from './pages/lp-odontologia/LPOdontologia.jsx'
 import LPAdvocacia from './pages/lp-advocacia/LPAdvocacia.jsx'
 import LPRestaurante from './pages/lp-restaurante/LPRestaurante.jsx'
+import LPAcademia from './pages/lp-academia/LPAcademia.jsx'
 import SistemaCSDT from './pages/sistema-csdt/SistemaCSDT.jsx'
 import LojaVirtual from './pages/loja-virtual/LojaVirtual.jsx'
 import AppDelivery from './pages/app-delivery/AppDelivery.jsx'
@@ -62,6 +63,7 @@ function App() {
         <Route path="/projeto/lp-odontologia" element={<LPOdontologia />} />
         <Route path="/projeto/lp-advocacia" element={<LPAdvocacia />} />
         <Route path="/projeto/lp-restaurante" element={<LPRestaurante />} />
+        <Route path="/projeto/lp-academia" element={<LPAcademia />} />
         <Route path="/projeto/sistema-csdt" element={<SistemaCSDT />} />
         <Route path="/projeto/loja-virtual" element={<LojaVirtual />} />
         <Route path="/projeto/app-delivery" element={<AppDelivery />} />
